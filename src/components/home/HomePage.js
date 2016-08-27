@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import firebase from '../../FirebaseInit';
+// import firebase from '../../FirebaseInit';
+import firebase from 'firebase';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -37,7 +38,7 @@ class HomePage extends Component {
 			<div>
 				<h1>hello</h1>
 				<button onClick={this.signIn}>
-					Sign In
+					login
 				</button>
 			</div>
 		);
