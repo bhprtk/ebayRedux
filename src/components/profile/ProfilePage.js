@@ -1,12 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
+import DisplayProfile from './DisplayProfile';
+import Navbar from '../common/Navbar';
+
 class ProfilePage extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
-		console.log ('this.props:', this.props)
+		const {user} = this.props;
 		return (
-			<h1>profile page</h1>
-		)
+			<Navbar user={user}/>
+		);
 	}
 }
 
