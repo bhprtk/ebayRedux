@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 import * as userActions from '../../actions/userActions';
 
 class LoginButton extends Component {
@@ -13,15 +14,13 @@ class LoginButton extends Component {
 	signIn() {
 		const {actions} = this.props;
 		actions.googleLogin()
-		.then(() => console.log ('logged in:'))
-			.catch(error => {
-				console.log ('err:', err);
+			.then(() => {
+				browserHistory.push("/profile");
 			})
 
 	}
 
 	render() {
-		console.log ('this.props:', this.props)
 		return (
 			<div>
 				<button
@@ -35,8 +34,9 @@ class LoginButton extends Component {
 }
 
 LoginButton.propTypes = {
-	actions: PropTypes.object.isRequired
-}
+	actions: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state, ownProps) {
 	return {
