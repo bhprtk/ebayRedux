@@ -16,7 +16,7 @@ class LoginButton extends Component {
 		actions.googleLogin()
 			.then(() => {
 				browserHistory.push("/profile");
-			})
+			});
 
 	}
 
@@ -47,7 +47,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(userActions, dispatch)
-	}
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginButton);

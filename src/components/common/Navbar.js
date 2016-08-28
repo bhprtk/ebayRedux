@@ -18,9 +18,15 @@ class Navbar extends Component {
 					<ul className="nav navbar-nav navbar-right">
 						<li>
 							<a href="#">
+								hello
+
+							</a>
+						</li>
+						<li>
+							<a href="#">
 								<Avatar
 									src={this.props.user.photoURL}
-									size={60}
+									size={40}
 									/>
 								<span style={styles.displayName}>{this.props.user.displayName}</span>
 							</a>
