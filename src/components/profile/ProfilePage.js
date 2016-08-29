@@ -11,14 +11,13 @@ class ProfilePage extends Component {
 
 		this.state = {
 			showModal: false
-		}
+		};
 
 		this.addListingModal = this.addListingModal.bind(this);
 		this.hideListingModal = this.hideListingModal.bind(this);
 	}
 
 	addListingModal() {
-		console.log ('here:')
 		this.setState({ showModal: true });
 	}
 

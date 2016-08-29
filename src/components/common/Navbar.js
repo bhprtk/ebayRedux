@@ -52,7 +52,8 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
 	user: PropTypes.object.isRequired,
-	addListingModal: PropTypes.func.isRequired
+	addListingModal: PropTypes.func.isRequired,
+	hideListingModal: PropTypes.func.isRequired
 };
 
 const styles = {
