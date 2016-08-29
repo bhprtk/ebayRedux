@@ -14,12 +14,9 @@ class AddListingModal extends Component {
             <Modal.Title>Add Listing</Modal.Title>
           </Modal.Header>
           <Modal.Body style={styles.modalBody}>
-            <AddListingForm />
+            <AddListingForm saveListing={this.props.saveListing} hide={this.props.hide}/>
 
           </Modal.Body>
-          <Modal.Footer style={styles.modalFooter}>
-            <Button onClick={this.props.hide}>Close</Button>
-          </Modal.Footer>
         </Modal>
 		);
 	}
@@ -27,7 +24,8 @@ class AddListingModal extends Component {
 
 AddListingModal.propTypes = {
 	show: PropTypes.bool.isRequired,
-	hide: PropTypes.func.isRequired
+	hide: PropTypes.func.isRequired,
+	saveListing: PropTypes.func.isRequired
 }
 
 const styles = {

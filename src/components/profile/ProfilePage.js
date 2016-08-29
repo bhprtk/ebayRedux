@@ -15,6 +15,7 @@ class ProfilePage extends Component {
 
 		this.addListingModal = this.addListingModal.bind(this);
 		this.hideListingModal = this.hideListingModal.bind(this);
+		this.saveListing = this.saveListing.bind(this);
 	}
 
 	addListingModal() {
@@ -25,6 +26,10 @@ class ProfilePage extends Component {
 		this.setState({ showModal: false });
 	}
 
+	saveListing(productObj) {
+		console.log ('productObj:', productObj);
+	}
+
 	render() {
 		const {user} = this.props;
 		return (
@@ -33,7 +38,7 @@ class ProfilePage extends Component {
 					user={user}
 					addListingModal={this.addListingModal}
 					hideListingModal={this.hideListingModal}/>
-				<AddListingModal show={this.state.showModal} hide={this.hideListingModal}/>
+				<AddListingModal show={this.state.showModal} hide={this.hideListingModal} saveListing={this.saveListing}/>
 
 				{this.props.children}
 			</div>
