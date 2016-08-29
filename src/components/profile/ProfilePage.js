@@ -16,6 +16,7 @@ class ProfilePage extends Component {
 		this.addListingModal = this.addListingModal.bind(this);
 		this.hideListingModal = this.hideListingModal.bind(this);
 		this.saveListing = this.saveListing.bind(this);
+		this.onInputChange = this.onInputChange.bind(this);
 	}
 
 	addListingModal() {
@@ -26,8 +27,18 @@ class ProfilePage extends Component {
 		this.setState({ showModal: false });
 	}
 
-	saveListing(productObj) {
-		console.log ('productObj:', productObj);
+	onInputChange(e) {
+		let key = e.target.dataset.statekey;
+    let value = e.target.value;
+    this.setState({
+      [key]: value
+    });
+	}
+
+	saveListing(e) {
+		e.preventDefault();
+		console.log ('here:');
+		console.log ('this.state:', this.state);
 	}
 
 	render() {
@@ -38,7 +49,7 @@ class ProfilePage extends Component {
 					user={user}
 					addListingModal={this.addListingModal}
 					hideListingModal={this.hideListingModal}/>
-				<AddListingModal show={this.state.showModal} hide={this.hideListingModal} saveListing={this.saveListing}/>
+				<AddListingModal show={this.state.showModal} hide={this.hideListingModal} saveListing={this.saveListing} onInputChange={this.onInputChange}/>
 
 				{this.props.children}
 			</div>
