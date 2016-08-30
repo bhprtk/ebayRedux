@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
+import * as listingActions from '../../actions/listingActions';
 import firebase from 'firebase';
 
 import DisplayProfile from './DisplayProfile';
@@ -23,11 +24,8 @@ class ProfilePage extends Component {
 	}
 
 	componentDidMount() {
-		const {actions, user} = this.props;
-		actions.getCurrentUser();
-			// .then(() => {
-			// 	console.log ('user:', user)
-			// })
+		const {userActions, user} = this.props;
+		userActions.getCurrentUser();
 	}
 
 	addListingModal() {
@@ -48,8 +46,14 @@ class ProfilePage extends Component {
 
 	saveListing(e) {
 		e.preventDefault();
-		console.log ('here:');
-		console.log ('this.state:', this.state);
+		const {imageUrl, title, price, description} = this.state;
+		const listingObj = {
+			imageUrl,
+			title,
+			price,
+			description
+		}
+		listingActions.createListing(listingObj);
 	}
 
 	render() {
@@ -73,6 +77,7 @@ class ProfilePage extends Component {
 }
 
 ProfilePage.propTypes = {
+	userActions: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired
 };
 
@@ -84,7 +89,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(userActions, dispatch)
+		userActions: bindActionCreators(userActions, dispatch),
+		listingActions: bindActionCreators(listingActions, dispatch)
 	};
 }
 

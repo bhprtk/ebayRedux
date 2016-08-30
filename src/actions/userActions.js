@@ -34,14 +34,14 @@ export function googleLogin() {
 }
 
 export function getCurrentUser() {
-	console.log ('here in getCurrentUser:')
 	return function(dispatch) { // thunk
 		return firebase.auth().onAuthStateChanged(function(user) {
-			if(user) {
-				return dispatch(getCurrentUserSuccess(user));
-			} else {
-				console.log ('no current user:');
-			}
-		});
+				if(user) {
+					return (dispatch(getCurrentUserSuccess(user)));
+				} else {
+					console.log ('no current user:');
+				}
+			});
+
 	};
 }
