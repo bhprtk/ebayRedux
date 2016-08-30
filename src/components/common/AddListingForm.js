@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import TextField from 'material-ui/TextField';
 import {Modal, Button} from 'react-bootstrap';
 
-const AddListingForm = ({onInputChange, saveListing}) => {
+const AddListingForm = ({onInputChange, saveListing, hide}) => {
 	return (
 		<form className="form-horizontal" onSubmit={saveListing}>
 			<div className="form-group">
@@ -56,7 +56,7 @@ const AddListingForm = ({onInputChange, saveListing}) => {
 			</div>
 			<Modal.Footer>
 				<button className="btn btn-default">Save</button>
-				<button className="btn btn-default" type="button" onClick={this.props.hide}>Cancel</button>
+				<button className="btn btn-default" type="button" onClick={hide}>Cancel</button>
 
 			</Modal.Footer>
 
@@ -67,7 +67,8 @@ const AddListingForm = ({onInputChange, saveListing}) => {
 
 AddListingForm.propTypes = {
 	onInputChange: PropTypes.func.isRequired,
-	saveListing: PropTypes.func.isRequired
+	saveListing: PropTypes.func.isRequired,
+	hide: PropTypes.func.isRequired
 };
 
 const styles = {

@@ -11,6 +11,13 @@ export function loginSuccess(user) {
 	};
 }
 
+export function getCurrentUserSuccess(user) {
+	return {
+		type: types.GET_CURRENT_USER_SUCCESS,
+		user
+	}
+}
+
 export function googleLogin() {
 	return function(dispatch) {
 		return firebase.auth().signInWithPopup(provider).then(result => {
@@ -22,6 +29,19 @@ export function googleLogin() {
 			const errorMessage = error.message;
 			const email = error.email;
 			const credential = error.credential;
+		});
+	};
+}
+
+export function getCurrentUser() {
+	console.log ('here in getCurrentUser:')
+	return function(dispatch) { // thunk
+		return firebase.auth().onAuthStateChanged(function(user) {
+			if(user) {
+				return dispatch(getCurrentUserSuccess(user));
+			} else {
+				console.log ('no current user:');
+			}
 		});
 	};
 }

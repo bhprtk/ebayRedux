@@ -1,5 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
+import firebase from 'firebase';
 
 import DisplayProfile from './DisplayProfile';
 import Navbar from '../common/Navbar';
@@ -17,6 +20,14 @@ class ProfilePage extends Component {
 		this.hideListingModal = this.hideListingModal.bind(this);
 		this.saveListing = this.saveListing.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
+	}
+
+	componentDidMount() {
+		const {actions, user} = this.props;
+		actions.getCurrentUser();
+			// .then(() => {
+			// 	console.log ('user:', user)
+			// })
 	}
 
 	addListingModal() {
@@ -42,17 +53,21 @@ class ProfilePage extends Component {
 	}
 
 	render() {
-		const {user} = this.props;
 		return (
 			<div>
 				<Navbar
-					user={user}
+					user={this.props.user}
 					addListingModal={this.addListingModal}
 					hideListingModal={this.hideListingModal}/>
-				<AddListingModal show={this.state.showModal} hide={this.hideListingModal} saveListing={this.saveListing} onInputChange={this.onInputChange}/>
+				<AddListingModal
+					show={this.state.showModal}
+					hide={this.hideListingModal}
+					saveListing={this.saveListing}
+					onInputChange={this.onInputChange}/>
 
 				{this.props.children}
 			</div>
+
 		);
 	}
 }
@@ -67,4 +82,10 @@ function mapStateToProps(state, ownProps) {
 	};
 }
 
-export default connect(mapStateToProps)(ProfilePage);
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(userActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

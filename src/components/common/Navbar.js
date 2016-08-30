@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
+import firebase from 'firebase';
 
 import Avatar from 'material-ui/Avatar';
 
@@ -38,7 +39,7 @@ class Navbar extends Component {
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a role="button" onClick={() => console.log ('firebase.auth().currentUser:', firebase.auth().currentUser)}>
 								hello
 							</a>
 						</li>
