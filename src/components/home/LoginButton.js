@@ -15,7 +15,6 @@ class LoginButton extends Component {
 		const {actions} = this.props;
 		actions.googleLogin()
 			.then(() => {
-				console.log ('doing it:')
 				browserHistory.push("/profile");
 			});
 

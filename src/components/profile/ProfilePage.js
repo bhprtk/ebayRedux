@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import DisplayProfile from './DisplayProfile';
 import Navbar from '../common/Navbar';
 import AddListingModal from '../common/AddListingModal';
+import DisplayListings from './DisplayListings';
 
 class ProfilePage extends Component {
 	constructor(props) {
@@ -24,8 +25,9 @@ class ProfilePage extends Component {
 	}
 
 	componentDidMount() {
-		const {userActions, user} = this.props;
-		userActions.getCurrentUser();
+		const {userActions, listingActions} = this.props;
+		// userActions.getCurrentUser();
+		// listingActions.getListings();
 	}
 
 	addListingModal() {
@@ -52,17 +54,23 @@ class ProfilePage extends Component {
 			title,
 			price,
 			description
-		}
+		};
 		listingActions.createListing(listingObj);
 	}
 
 	render() {
+		console.log ('this.props:', this.props)
 		return (
 			<div>
 				<Navbar
 					user={this.props.user}
 					addListingModal={this.addListingModal}
 					hideListingModal={this.hideListingModal}/>
+
+				<DisplayListings
+					user={this.props.user}
+					listings={this.props.listings}/>
+
 				<AddListingModal
 					show={this.state.showModal}
 					hide={this.hideListingModal}
@@ -78,12 +86,15 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
 	userActions: PropTypes.object.isRequired,
-	user: PropTypes.object.isRequired
+	listingActions: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired,
+	listings: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		user: state.user
+		user: state.user,
+		listings: state.listings
 	};
 }
 
