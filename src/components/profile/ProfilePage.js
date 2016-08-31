@@ -15,7 +15,8 @@ class ProfilePage extends Component {
 		super(props);
 
 		this.state = {
-			showModal: false
+			showModal: false,
+			listings: []
 		};
 
 		this.addListingModal = this.addListingModal.bind(this);
@@ -27,13 +28,15 @@ class ProfilePage extends Component {
 	componentDidMount() {
 		const {userActions, listingActions} = this.props;
 		firebase.database().ref('listings').on('value', snap => {
-			console.log ('snap.val():', snap.val())
+			let listingsArr = [], listings = snap.val();
+			for(let key in listings) {
+				listingsArr.push(listings[key]);
+			}
 			this.setState({
-				listings: snap.val()
-			})
-		})
-		// userActions.getCurrentUser();
-		// listingActions.getListings();
+				listings: listingsArr,
+				showModal: false
+			});
+		});
 	}
 
 	addListingModal() {
@@ -65,7 +68,6 @@ class ProfilePage extends Component {
 	}
 
 	render() {
-		console.log ('this.props:', this.props)
 		return (
 			<div>
 				<Navbar

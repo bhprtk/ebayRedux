@@ -1,23 +1,16 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 const DisplayListings = ({user, listings}) => {
-	console.log ('user:', user)
 	console.log ('listings:', listings)
-	let listingsArr = [];
-	for(let key in listings) {
-		console.log ('listsings[key]:', listings[key])
-		listingsArr.push(listings[key]);
-	}
-
-	let displayListings = listingsArr.map((listing, index) => {
+	let displayListings = listings.map((listing, index) => {
 		return (
 			<li key={index}>
 				<p>{listing.title}</p>
 				<p>{listing.price}</p>
 				<p>{listing.description}</p>
 			</li>
-		)
-	})
+		);
+	});
 
 	return (
 		<div>
@@ -27,7 +20,12 @@ const DisplayListings = ({user, listings}) => {
 			</ul>
 
 		</div>
-	)
+	);
 }
+
+DisplayListings.propTypes = {
+	user: PropTypes.object.isRequired,
+	listings: PropTypes.array.isRequired
+};
 
 export default DisplayListings;
