@@ -26,6 +26,12 @@ class ProfilePage extends Component {
 
 	componentDidMount() {
 		const {userActions, listingActions} = this.props;
+		firebase.database().ref('listings').on('value', snap => {
+			console.log ('snap.val():', snap.val())
+			this.setState({
+				listings: snap.val()
+			})
+		})
 		// userActions.getCurrentUser();
 		// listingActions.getListings();
 	}
@@ -69,7 +75,7 @@ class ProfilePage extends Component {
 
 				<DisplayListings
 					user={this.props.user}
-					listings={this.props.listings}/>
+					listings={this.state.listings}/>
 
 				<AddListingModal
 					show={this.state.showModal}

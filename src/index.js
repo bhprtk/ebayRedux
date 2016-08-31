@@ -16,7 +16,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 const store = configureStore();
 store.dispatch(googleLogin());
 store.dispatch(getCurrentUser());
-store.dispatch(getListings());
+// store.dispatch(getListings());
 
 render (
 	<Provider store={store}>
