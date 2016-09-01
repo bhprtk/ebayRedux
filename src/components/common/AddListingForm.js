@@ -16,7 +16,7 @@ const AddListingForm = ({onInputChange, saveListing, hide, onDrop, savePicture, 
 
 
 
-				<label className="col-sm-3 control-label">Image URL</label>
+				{/*<label className="col-sm-3 control-label">Image URL</label>
 				<div className="col-sm-9">
 					<input
 						type="text"
@@ -25,7 +25,7 @@ const AddListingForm = ({onInputChange, saveListing, hide, onDrop, savePicture, 
 						data-statekey="imageUrl"
 						onChange={onInputChange}
 						required/>
-				</div>
+				</div>*/}
 			</div>
 			<div className="form-group">
 				<label className="col-sm-3 control-label">Product Title</label>

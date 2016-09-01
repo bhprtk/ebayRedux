@@ -8,7 +8,7 @@ class DropzoneComponent extends Component {
 
 		this.state = {
 			preview: null,
-			testing: '50%'
+			showProgress: false
 		}
 
 		this.onDrop = this.onDrop.bind(this);
@@ -32,16 +32,19 @@ class DropzoneComponent extends Component {
 
 	savePicture() {
 		console.log ('this.state.file:', this.state.file)
+		this.setState({showProgress: true})
 		const storageRef = firebase.storage().ref(`listingImages/${this.state.file.name}`);
 		const task = storageRef.put(this.state.file);
 
 			task.on('state_changed', snap => {
-				const percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+				const percentage = ((snap.bytesTransferred / snap.totalBytes) * 100);
 					this.setState({
-						percentage: `${percentage.toString()}%`
+						percentage: `${percentage.toString()}%`,
+						displayPercentage: Math.ceil(percentage)
 					})
 
-				}
+				},
+
 
 		)
 
@@ -53,10 +56,7 @@ class DropzoneComponent extends Component {
 			<div className="container" style={styles.container}>
 
 				{/*<img src="https://firebasestorage.googleapis.com/v0/b/ebayredux-247f8.appspot.com/o/listingImages%2Fcat%20jump.gif?alt=media&token=ea505817-b485-4d1b-9ce3-e8c40b5d3cab"/>*/}
-				{/*<div className="progress">
-					<div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.percentage}}>
-					</div>
-				</div>*/}
+
 
 				<If condition={!this.state.preview}>
 					<Dropzone onDrop={this.onDrop} role="button">
@@ -74,12 +74,27 @@ class DropzoneComponent extends Component {
 						<img src={this.state.preview} style={styles.preview} className="col-xs-6 col-sm-6 col-md-6"/>
 						<div
 							className="col-xs-6 col-sm-6 col-md-6">
-							<button onClick={this.saveImage} className="btn btn-default">
-								Save Picture
-							</button>
-							<button onClick={this.cancelImage} className="btn btn-default" type="button">
-								Cancel
-							</button>
+
+							<If condition={!this.state.showProgress}>
+								<button onClick={this.savePicture} className="btn btn-default" type="button">
+									Save Picture
+								</button>
+								<button onClick={this.cancelImage} className="btn btn-default" type="button">
+									Cancel
+								</button>
+
+							</If>
+
+
+							<If condition={this.state.showProgress}>
+								<div className="progress" style={styles.progress}>
+									<div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" style={{width: this.state.percentage}}>
+									</div>
+								</div>
+								<p>Saving Image {this.state.displayPercentage}%</p>
+
+							</If>
+
 
 						</div>
 
@@ -92,9 +107,6 @@ class DropzoneComponent extends Component {
 }
 
 const styles = {
-	progress: {
-		width: "70%"
-	},
 	dropzone: {
 		paddingTop: 30
 	},
@@ -108,6 +120,9 @@ const styles = {
 	preview: {
 		height: 300,
 		width: 300
+	},
+	progress: {
+		width: 250
 	}
 }
 
