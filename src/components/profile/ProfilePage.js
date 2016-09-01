@@ -16,7 +16,8 @@ class ProfilePage extends Component {
 
 		this.state = {
 			showModal: false,
-			listings: []
+			listings: [],
+			preview: null
 		};
 
 		this.addListingModal = this.addListingModal.bind(this);
@@ -53,6 +54,15 @@ class ProfilePage extends Component {
     this.setState({
       [key]: value
     });
+		console.log ('this.state:', this.state)
+	}
+
+	onFileChange(file) {
+		console.log ('file:', file)
+		this.setState({
+			picture: file,
+			preview: file[0].preview
+		})
 		console.log ('this.state:', this.state)
 	}
 
@@ -95,7 +105,9 @@ class ProfilePage extends Component {
 					saveListing={this.saveListing}
 					onInputChange={this.onInputChange}
 					onDrop={this.onDrop}
-					savePicture={this.savePicture}/>
+					savePicture={this.savePicture}
+					onFileChange={this.onFileChange}
+					preview={this.state.preview}/>
 
 				{this.props.children}
 			</div>

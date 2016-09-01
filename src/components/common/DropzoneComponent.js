@@ -3,8 +3,8 @@ import Dropzone from 'react-dropzone';
 import firebase from 'firebase';
 
 class DropzoneComponent extends Component {
-	constructor(props) {
-		super(props);
+	constructor(props, context) {
+		super(props, context);
 
 		this.state = {
 			preview: null,
@@ -13,13 +13,20 @@ class DropzoneComponent extends Component {
 
 		this.onDrop = this.onDrop.bind(this);
 		this.savePicture = this.savePicture.bind(this);
+		this.cancelImage = this.cancelImage.bind(this);
 	}
 
 	onDrop(file) {
-		console.log ('file:', file)
 		this.setState({
 			file: file[0],
 			preview: file[0].preview
+		})
+	}
+
+	cancelImage() {
+		this.setState({
+			file: null,
+			preview: null
 		})
 	}
 
@@ -41,38 +48,42 @@ class DropzoneComponent extends Component {
 	}
 
 	render() {
-		console.log ('this.state:', this.state)
+		console.log ('this.props:', this.props)
 		return (
-			<div>
+			<div className="container" style={styles.container}>
 
-				<img src="https://firebasestorage.googleapis.com/v0/b/ebayredux-247f8.appspot.com/o/listingImages%2Fcat%20jump.gif?alt=media&token=ea505817-b465-4d1b-9ce3-e8c40b5d3cab"/>
-				<div className="progress">
+				{/*<img src="https://firebasestorage.googleapis.com/v0/b/ebayredux-247f8.appspot.com/o/listingImages%2Fcat%20jump.gif?alt=media&token=ea505817-b485-4d1b-9ce3-e8c40b5d3cab"/>*/}
+				{/*<div className="progress">
 					<div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.percentage}}>
 					</div>
-				</div>
+				</div>*/}
 
 				<If condition={!this.state.preview}>
-					<Dropzone onDrop={this.onDrop}>
-						<div>
-							Click or drop a file here
+					<Dropzone onDrop={this.onDrop} role="button">
+						<div style={styles.dropzone} className="text-center">
+							<i className="fa fa-cloud-upload" style={styles.cloudIcon}></i>
+							<p>Click or drop an image here</p>
 						</div>
 					</Dropzone>
-					<button onClick={() => this.setState({testing: '20%'})}>
-						update
-					</button>
-
 				</If>
 
 
 
 				<If condition={this.state.preview}>
-					<img src={this.state.preview} />
-					<button
-						type="button"
-						className="btn btn-primary"
-						onClick={this.savePicture}>
-						Save Picture
-					</button>
+					<div className="row">
+						<img src={this.state.preview} style={styles.preview} className="col-xs-6 col-sm-6 col-md-6"/>
+						<div
+							className="col-xs-6 col-sm-6 col-md-6">
+							<button onClick={this.saveImage} className="btn btn-default">
+								Save Picture
+							</button>
+							<button onClick={this.cancelImage} className="btn btn-default" type="button">
+								Cancel
+							</button>
+
+						</div>
+
+					</div>
 				</If>
 
 			</div>
@@ -83,6 +94,20 @@ class DropzoneComponent extends Component {
 const styles = {
 	progress: {
 		width: "70%"
+	},
+	dropzone: {
+		paddingTop: 30
+	},
+	cloudIcon: {
+		fontSize: 64
+	},
+	container: {
+		color: '#696969',
+		paddingBottom: 20
+	},
+	preview: {
+		height: 300,
+		width: 300
 	}
 }
 
