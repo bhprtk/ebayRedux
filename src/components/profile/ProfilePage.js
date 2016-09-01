@@ -53,18 +53,28 @@ class ProfilePage extends Component {
     this.setState({
       [key]: value
     });
+		console.log ('this.state:', this.state)
 	}
 
 	saveListing(e) {
 		e.preventDefault();
-		const {imageUrl, title, price, description} = this.state;
+		const {imageUrl, title, price, description, imageBase} = this.state;
 		const listingObj = {
 			imageUrl,
 			title,
 			price,
-			description
+			description,
+			imageBase
 		};
 		listingActions.createListing(listingObj);
+	}
+
+	onDrop(files) {
+		console.log ('files:', files)
+	}
+
+	savePicture() {
+		console.log ('savePicture:')
 	}
 
 	render() {
@@ -83,7 +93,9 @@ class ProfilePage extends Component {
 					show={this.state.showModal}
 					hide={this.hideListingModal}
 					saveListing={this.saveListing}
-					onInputChange={this.onInputChange}/>
+					onInputChange={this.onInputChange}
+					onDrop={this.onDrop}
+					savePicture={this.savePicture}/>
 
 				{this.props.children}
 			</div>

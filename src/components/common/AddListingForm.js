@@ -1,11 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import TextField from 'material-ui/TextField';
 import {Modal, Button} from 'react-bootstrap';
+import Dropzone from 'react-dropzone';
 
-const AddListingForm = ({onInputChange, saveListing, hide}) => {
+import DropzoneComponent from './DropzoneComponent';
+
+const AddListingForm = ({onInputChange, saveListing, hide, onDrop, savePicture}) => {
 	return (
 		<form className="form-horizontal" onSubmit={saveListing}>
 			<div className="form-group">
+
+			<DropzoneComponent />
+
 				<label className="col-sm-3 control-label">Image URL</label>
 				<div className="col-sm-9">
 					<input
