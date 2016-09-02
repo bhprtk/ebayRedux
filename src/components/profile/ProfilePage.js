@@ -40,6 +40,8 @@ class ProfilePage extends Component {
 		});
 	}
 
+
+
 	addListingModal() {
 		this.setState({ showModal: true });
 	}
@@ -54,40 +56,29 @@ class ProfilePage extends Component {
     this.setState({
       [key]: value
     });
-		console.log ('this.state:', this.state)
 	}
 
 	onFileChange(file) {
-		console.log ('file:', file)
 		this.setState({
 			picture: file,
 			preview: file[0].preview
-		})
-		console.log ('this.state:', this.state)
+		});
 	}
 
 	saveListing(e) {
 		e.preventDefault();
-		const {imageUrl, title, price, description, imageBase} = this.state;
+		const {imageUrl, title, price, description} = this.state;
 		const listingObj = {
 			imageUrl,
 			title,
 			price,
-			description,
-			imageBase
+			description
 		};
 		listingActions.createListing(listingObj);
 	}
 
-	onDrop(files) {
-		console.log ('files:', files)
-	}
-
-	savePicture() {
-		console.log ('savePicture:')
-	}
-
 	render() {
+		console.log ('this.props.imageUrl:', this.props.imageUrl)
 		return (
 			<div>
 				<Navbar
@@ -104,10 +95,7 @@ class ProfilePage extends Component {
 					hide={this.hideListingModal}
 					saveListing={this.saveListing}
 					onInputChange={this.onInputChange}
-					onDrop={this.onDrop}
-					savePicture={this.savePicture}
-					onFileChange={this.onFileChange}
-					preview={this.state.preview}/>
+					/>
 
 				{this.props.children}
 			</div>
@@ -126,7 +114,8 @@ ProfilePage.propTypes = {
 function mapStateToProps(state, ownProps) {
 	return {
 		user: state.user,
-		listings: state.listings
+		listings: state.listings,
+		imageUrl: state.imageUrl
 	};
 }
 

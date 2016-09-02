@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap';
 
 import AddListingForm from './AddListingForm';
 
-const AddListingModal = ({show, hide, saveListing, onInputChange, onDrop, savePicture, onFileChange, preview}) => {
+const AddListingModal = ({show, hide, saveListing, onInputChange, onFileChange, preview}) => {
 	console.log ('preview:', preview)
 	return (
 		<Modal show={show} onHide={hide}>
@@ -27,7 +27,8 @@ const AddListingModal = ({show, hide, saveListing, onInputChange, onDrop, savePi
 AddListingModal.propTypes = {
 	show: PropTypes.bool.isRequired,
 	hide: PropTypes.func.isRequired,
-	saveListing: PropTypes.func.isRequired
+	saveListing: PropTypes.func.isRequired,
+	onInputChange: PropTypes.func.isRequired
 };
 
 const styles = {

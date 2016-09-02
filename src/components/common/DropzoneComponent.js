@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 import firebase from 'firebase';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as listingActions from '../../actions/listingActions';
 
 class DropzoneComponent extends Component {
 	constructor(props, context) {
@@ -8,12 +11,15 @@ class DropzoneComponent extends Component {
 
 		this.state = {
 			preview: null,
-			showProgress: false
+			showProgress: false,
+			imageUploadSuccess: false,
+			getMetadata: false
 		}
 
 		this.onDrop = this.onDrop.bind(this);
 		this.savePicture = this.savePicture.bind(this);
 		this.cancelImage = this.cancelImage.bind(this);
+		this.deleteImage = this.deleteImage.bind(this);
 	}
 
 	onDrop(file) {
@@ -31,32 +37,45 @@ class DropzoneComponent extends Component {
 	}
 
 	savePicture() {
-		console.log ('this.state.file:', this.state.file)
 		this.setState({showProgress: true})
 		const storageRef = firebase.storage().ref(`listingImages/${this.state.file.name}`);
 		const task = storageRef.put(this.state.file);
+		let imageUrl;
 
-			task.on('state_changed', snap => {
-				const percentage = ((snap.bytesTransferred / snap.totalBytes) * 100);
-					this.setState({
-						percentage: `${percentage.toString()}%`,
-						displayPercentage: Math.ceil(percentage)
-					})
+		task.on('state_changed', snap => {
+			const percentage = ((snap.bytesTransferred / snap.totalBytes) * 100);
+				this.setState({
+					percentage: `${percentage.toString()}%`,
+					displayPercentage: Math.ceil(percentage)
+				})
 
-				},
-
-
-		)
-
+			},
+			err => {
+				console.log ('err:', err)
+			},
+			() => {
+				this.setState({
+					imageUploadSuccess: true,
+					imageUrl: task.snapshot.downloadURL
+				});
+				console.log ('task.snapshot.downloadURL:', task.snapshot.downloadURL)
+			}
+		);
+	}
+	deleteImage() {
+		const storageRef = firebase.storage().ref(`listingImages/${this.state.file.name}`);
+		storageRef.delete()
+			.then(() => {
+				this.setState({preview: null});
+			})
+			.catch(err => {
+				console.log ('err:', err)
+			})
 	}
 
 	render() {
-		console.log ('this.props:', this.props)
 		return (
 			<div className="container" style={styles.container}>
-
-				{/*<img src="https://firebasestorage.googleapis.com/v0/b/ebayredux-247f8.appspot.com/o/listingImages%2Fcat%20jump.gif?alt=media&token=ea505817-b485-4d1b-9ce3-e8c40b5d3cab"/>*/}
-
 
 				<If condition={!this.state.preview}>
 					<Dropzone onDrop={this.onDrop} role="button">
@@ -87,11 +106,24 @@ class DropzoneComponent extends Component {
 
 
 							<If condition={this.state.showProgress}>
-								<div className="progress" style={styles.progress}>
-									<div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" style={{width: this.state.percentage}}>
+
+								<If condition={!this.state.imageUploadSuccess}>
+									<div className="progress" style={styles.progress}>
+										<div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" style={{width: this.state.percentage}}>
+										</div>
 									</div>
-								</div>
-								<p>Saving Image {this.state.displayPercentage}%</p>
+									<p>Saving Image {this.state.displayPercentage}%</p>
+								</If>
+
+								<If condition={this.state.imageUploadSuccess}>
+									<p>Image saved</p>
+									<button className="btn btn-default" type="button" onClick={this.deleteImage}>
+										Cancel Image
+									</button>
+									<button className="btn btn-default" type="button" onClick={this.confirmImage}>
+										Confirm Image
+									</button>
+								</If>
 
 							</If>
 
