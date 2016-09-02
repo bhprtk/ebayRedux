@@ -15,8 +15,6 @@ const AddListingModal = ({show, hide, saveListing, onInputChange, onFileChange, 
 					saveListing={saveListing}
 					hide={hide}
 					onInputChange={onInputChange}
-					onDrop={onDrop}
-					savePicture={savePicture}
 					onFileChange={onFileChange}
 					preview={preview}/>
       </Modal.Body>

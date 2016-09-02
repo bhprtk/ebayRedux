@@ -1,22 +1,33 @@
 import React, {PropTypes} from 'react';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 const DisplayListings = ({user, listings}) => {
 	let displayListings = listings.map((listing, index) => {
 		return (
-			<li key={index} className="list-group-item">
-				<p>Title: {listing.title}</p>
-				<p>Price: {listing.price}</p>
-				<p>Description: {listing.description}</p>
-			</li>
+
+			<Card className="col-md-6 col-sm-6 col-xs-6">
+		    <CardHeader
+		      title="URL Avatar"
+		      subtitle="Subtitle"
+		      avatar="images/jsa-128.jpg"
+		    />
+		    <CardMedia>
+		      <img src={listing.imageUrl} />
+		    </CardMedia>
+		    <CardTitle title={listing.title} subtitle={listing.price} />
+		    <CardText>
+		      {listing.description}
+		    </CardText>
+		  </Card>
+
+
 		);
 	});
 
 	return (
 		<div className="container">
 			<h1>DisplayListings</h1>
-			<ul className="list-group">
-				{displayListings}
-			</ul>
+ 				{displayListings}
 
 		</div>
 	);
