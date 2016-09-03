@@ -26,6 +26,25 @@ export function getCurrentUserSuccess(user) {
 
 function saveUser(user) {
 	console.log ('user:', user)
+	const {displayName, email, photoURL, uid} = user;
+	const userObj = {
+		displayName,
+		email,
+		photoURL,
+		uid
+	}				
+	firebase.database().ref('users').once('value')
+		.then(snap => {
+			let userArr = [], users = snap.val();
+
+			for(let key in users) {
+				userArr.push(users[key]);
+			}
+
+			if(userArr.every(user => user.uid !== userObj.uid)) {
+				firebase.database().ref('users').push(userObj);
+			}
+		})
 }
 
 
@@ -51,7 +70,7 @@ export function getCurrentUser() {
 			if(user) {
 				return (dispatch(getCurrentUserSuccess(user)));
 			} else {
-				return dispatch(gotoHome());
+				console.log ('no user found:');
 			}
 		});
 
