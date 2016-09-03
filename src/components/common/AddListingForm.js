@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 import DropzoneComponent from './DropzoneComponent';
 
-const AddListingForm = ({onInputChange, saveListing, hide, savePicture, onFileChange, preview}) => {
+const AddListingForm = ({onInputChange, saveListing, hide}) => {
 	return (
 		<form className="form-horizontal" onSubmit={saveListing}>
 			<div className="form-group">

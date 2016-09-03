@@ -3,20 +3,18 @@ import {Modal, Button} from 'react-bootstrap';
 
 import AddListingForm from './AddListingForm';
 
-const AddListingModal = ({show, hide, saveListing, onInputChange, onFileChange, preview}) => {
+const AddListingModal = ({show, hide, saveListing, onInputChange, onFileChange}) => {
 	console.log ('preview:', preview)
 	return (
 		<Modal show={show} onHide={hide}>
       <Modal.Header closeButton style={styles.modalHeader}>
-        <Modal.Title>Add Listing</Modal.Title>
+        <Modal.Title>New Listing</Modal.Title>
       </Modal.Header>
       <Modal.Body style={styles.modalBody}>
         <AddListingForm
 					saveListing={saveListing}
 					hide={hide}
-					onInputChange={onInputChange}
-					onFileChange={onFileChange}
-					preview={preview}/>
+					onInputChange={onInputChange} />
       </Modal.Body>
     </Modal>
 	);

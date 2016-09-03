@@ -28,6 +28,7 @@ class ProfilePage extends Component {
 
 	componentDidMount() {
 		const {userActions, listingActions} = this.props;
+
 		firebase.database().ref('listings').on('value', snap => {
 			let listingsArr = [], listings = snap.val();
 			for(let key in listings) {
