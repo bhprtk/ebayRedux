@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
 import * as listingActions from '../../actions/listingActions';
 import firebase from 'firebase';
+import {browserHistory} from 'react-router';
 
 import DisplayProfile from './DisplayProfile';
 import Navbar from '../common/Navbar';
@@ -24,6 +25,7 @@ class ProfilePage extends Component {
 		this.hideListingModal = this.hideListingModal.bind(this);
 		this.saveListing = this.saveListing.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
+		this.logout = this.logout.bind(this);
 	}
 
 	componentDidMount() {
@@ -66,6 +68,17 @@ class ProfilePage extends Component {
 		});
 	}
 
+	logout() {
+		firebase.auth().signOut()
+			.then(() => {
+				console.log ('signedOut:');
+				browserHistory.push('/');
+			},
+			err => {
+				console.log ('err:', err)
+			})
+	}
+
 	saveListing(e) {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
@@ -74,7 +87,7 @@ class ProfilePage extends Component {
 			title,
 			price,
 			description,
-			
+
 		};
 		listingActions.createListing(listingObj);
 	}
@@ -86,7 +99,7 @@ class ProfilePage extends Component {
 				<Navbar
 					user={this.props.user}
 					addListingModal={this.addListingModal}
-					hideListingModal={this.hideListingModal}/>
+					logout={this.logout} />
 
 				<DisplayListings
 					user={this.props.user}

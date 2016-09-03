@@ -4,11 +4,17 @@ import * as types from './actionTypes';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-export function loginSuccess(user) {
+// export function loginSuccess(user) {
+// 	return {
+// 		type: types.GOOGLE_LOGIN_SUCCESS,
+// 		user
+// 	};
+// }
+
+export function gotoHome() {
 	return {
-		type: types.GOOGLE_LOGIN_SUCCESS,
-		user
-	};
+		type: types.GOTO_HOME
+	}
 }
 
 export function getCurrentUserSuccess(user) {
@@ -29,7 +35,7 @@ export function googleLogin() {
 			const token = result.credential.accessToken;
 			const user = result.user;
 			saveUser(user);
-			dispatch(loginSuccess(user));
+			return dispatch();
 		}).catch(error => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
@@ -45,7 +51,7 @@ export function getCurrentUser() {
 			if(user) {
 				return (dispatch(getCurrentUserSuccess(user)));
 			} else {
-				console.log ('no current user:');
+				return dispatch(gotoHome());
 			}
 		});
 
