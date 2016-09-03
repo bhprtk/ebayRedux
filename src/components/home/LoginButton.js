@@ -34,7 +34,7 @@ class LoginButton extends Component {
 }
 
 LoginButton.propTypes = {
-	actions: PropTypes.object.isRequired,
+	userActions: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired
 };
 

@@ -18,11 +18,17 @@ export function getCurrentUserSuccess(user) {
 	}
 }
 
+function saveUser(user) {
+	console.log ('user:', user)
+}
+
+
 export function googleLogin() {
 	return function(dispatch) {
 		return firebase.auth().signInWithPopup(provider).then(result => {
 			const token = result.credential.accessToken;
 			const user = result.user;
+			saveUser(user);
 			dispatch(loginSuccess(user));
 		}).catch(error => {
 			const errorCode = error.code;
@@ -36,12 +42,12 @@ export function googleLogin() {
 export function getCurrentUser() {
 	return function(dispatch) { // thunk
 		return firebase.auth().onAuthStateChanged(function(user) {
-				if(user) {
-					return (dispatch(getCurrentUserSuccess(user)));
-				} else {
-					console.log ('no current user:');
-				}
-			});
+			if(user) {
+				return (dispatch(getCurrentUserSuccess(user)));
+			} else {
+				console.log ('no current user:');
+			}
+		});
 
 	};
 }

@@ -73,13 +73,14 @@ class ProfilePage extends Component {
 			imageUrl,
 			title,
 			price,
-			description
+			description,
+			
 		};
 		listingActions.createListing(listingObj);
 	}
 
 	render() {
-		console.log ('this.props.imageUrl:', this.props.imageUrl)
+		console.log ('this.props.user:', this.props.user)
 		return (
 			<div>
 				<Navbar
