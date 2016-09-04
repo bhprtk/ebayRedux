@@ -3,3 +3,4 @@ export const GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';
 export const NEW_DATA = 'NEW_DATA';
 export const NEW_IMAGE = 'NEW_IMAGE';
 export const GOTO_HOME = 'GOTO_HOME';
+export const NEW_LISTINGS_SUCCESS = 'NEW_LISTINGS_SUCCESS';

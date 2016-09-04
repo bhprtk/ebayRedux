@@ -30,17 +30,17 @@ class ProfilePage extends Component {
 
 	componentDidMount() {
 		const {userActions, listingActions} = this.props;
-
-		firebase.database().ref('listings').on('value', snap => {
-			let listingsArr = [], listings = snap.val();
-			for(let key in listings) {
-				listingsArr.push(listings[key]);
-			}
-			this.setState({
-				listings: listingsArr,
-				showModal: false
-			});
-		});
+		// firebase.database().ref('listings').on('value', snap => {
+		// 	let listingsArr = [], listings = snap.val();
+		// 	for(let key in listings) {
+		// 		listingsArr.push(listings[key]);
+		// 	}
+		// 	console.log ('listingsArr:', listingsArr)
+		// 	this.setState({
+		// 		listings: listingsArr,
+		// 		showModal: false
+		// 	});
+		// });
 	}
 
 
@@ -88,13 +88,13 @@ class ProfilePage extends Component {
 			title,
 			price,
 			description,
-			listedBy: user.uid
+			listedBy: user.userId
 		};
 		listingActions.createListing(listingObj);
 	}
 
 	render() {
-		console.log ('this.props.user:', this.props.user)
+		console.log ('this.props.listings:', this.props.listings)
 		return (
 			<div>
 				<Navbar
@@ -104,7 +104,7 @@ class ProfilePage extends Component {
 
 				<DisplayListings
 					user={this.props.user}
-					listings={this.state.listings}/>
+					listings={this.props.listings}/>
 
 				<AddListingModal
 					show={this.state.showModal}
@@ -124,7 +124,7 @@ ProfilePage.propTypes = {
 	userActions: PropTypes.object.isRequired,
 	listingActions: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
-	listings: PropTypes.object.isRequired
+	listings: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
