@@ -5,6 +5,7 @@ import * as userActions from '../../actions/userActions';
 import * as listingActions from '../../actions/listingActions';
 import firebase from 'firebase';
 import {browserHistory} from 'react-router';
+import moment from 'moment';
 
 import DisplayProfile from './DisplayProfile';
 import Navbar from '../common/Navbar';
@@ -27,23 +28,6 @@ class ProfilePage extends Component {
 		this.onInputChange = this.onInputChange.bind(this);
 		this.logout = this.logout.bind(this);
 	}
-
-	componentDidMount() {
-		const {userActions, listingActions} = this.props;
-		// firebase.database().ref('listings').on('value', snap => {
-		// 	let listingsArr = [], listings = snap.val();
-		// 	for(let key in listings) {
-		// 		listingsArr.push(listings[key]);
-		// 	}
-		// 	console.log ('listingsArr:', listingsArr)
-		// 	this.setState({
-		// 		listings: listingsArr,
-		// 		showModal: false
-		// 	});
-		// });
-	}
-
-
 
 	addListingModal() {
 		this.setState({ showModal: true });
@@ -88,6 +72,7 @@ class ProfilePage extends Component {
 			title,
 			price,
 			description,
+			date: Date.now(),
 			listedBy: user.userId
 		};
 		listingActions.createListing(listingObj);
