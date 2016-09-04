@@ -4,51 +4,29 @@ import * as types from './actionTypes';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-// export function loginSuccess(user) {
-// 	return {
-// 		type: types.GOOGLE_LOGIN_SUCCESS,
-// 		user
-// 	};
-// }
-
-export function gotoHome() {
-	return {
-		type: types.GOTO_HOME
-	}
-}
-
 export function getCurrentUserSuccess(user) {
+	console.log ('user:', user)
 	return {
 		type: types.GET_CURRENT_USER_SUCCESS,
 		user
-	}
+	};
 }
 
 function saveUser(user) {
-	console.log ('user:', user)
 	const {displayName, email, photoURL, uid} = user;
 	const userObj = {
 		displayName,
 		email,
 		photoURL,
 		userId: uid
-	}
+	};
 
 	firebase.database().ref('users/' + uid).once('value')
 		.then(snap => {
 			if(!snap.val()) {
 				firebase.database().ref('users/' + uid).push(userObj);
 			}
-			// let userArr = [], users = snap.val();
-			//
-			// for(let key in users) {
-			// 	userArr.push(users[key]);
-			// }
-			//
-			// if(userArr.every(user => user.uid !== userObj.uid)) {
-			// 	firebase.database().ref('users').push(userObj);
-			// }
-		})
+		});
 }
 
 
@@ -69,14 +47,29 @@ export function googleLogin() {
 }
 
 export function getCurrentUser() {
-	return function(dispatch) { // thunk
-		return firebase.auth().onAuthStateChanged(function(user) {
+	return dispatch => {
+		firebase.auth()
+		.onAuthStateChanged(user => {
 			if(user) {
-				return (dispatch(getCurrentUserSuccess(user)));
+				return dispatch(getCurrentUserFromDb(user));
 			} else {
 				console.log ('no user found:');
 			}
 		});
 
-	};
+	}
+}
+
+export function getCurrentUserFromDb(user) {
+	console.log ('user:', user)
+	return dispatch => {
+		return firebase.database().ref('users/' + user.uid).once('value')
+		.then(snap => {
+			let userObj, user = snap.val();
+			for(let key in user) {
+				userObj = user[key];
+			}
+			return dispatch(getCurrentUserSuccess(userObj));
+		});
+	}
 }

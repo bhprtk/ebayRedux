@@ -94,6 +94,7 @@ class ProfilePage extends Component {
 	}
 
 	render() {
+		console.log ('this.props.user:', this.props.user)
 		return (
 			<div>
 				<Navbar

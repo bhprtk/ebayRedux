@@ -15,11 +15,13 @@ import '../node_modules/toastr/build/toastr.min.css';
 import {
 	googleLogin,
 	getCurrentUser,
+	getCurrentUserFromDb
 } from './actions/userActions';
 
 const store = configureStore();
 store.dispatch(googleLogin());
 store.dispatch(getCurrentUser());
+// store.dispatch(getCurrentUserFromDb());
 // store.dispatch(getListings());
 
 render (
