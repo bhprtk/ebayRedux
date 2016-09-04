@@ -11,5 +11,5 @@ export function newData(listings) {
 }
 
 export function createListing(listingObj) {
-	firebase.database().ref('listings').push(listingObj);
+	firebase.database().ref('listings/' + listingObj.listedBy).push(listingObj);
 }

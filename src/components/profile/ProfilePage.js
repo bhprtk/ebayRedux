@@ -82,12 +82,13 @@ class ProfilePage extends Component {
 	saveListing(e) {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
+		const {user} = this.props;
 		const listingObj = {
 			imageUrl,
 			title,
 			price,
 			description,
-
+			listedBy: user.uid
 		};
 		listingActions.createListing(listingObj);
 	}

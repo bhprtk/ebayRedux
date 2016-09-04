@@ -31,19 +31,23 @@ function saveUser(user) {
 		displayName,
 		email,
 		photoURL,
-		uid
-	}				
-	firebase.database().ref('users').once('value')
+		userId: uid
+	}
+
+	firebase.database().ref('users/' + uid).once('value')
 		.then(snap => {
-			let userArr = [], users = snap.val();
-
-			for(let key in users) {
-				userArr.push(users[key]);
+			if(!snap.val()) {
+				firebase.database().ref('users/' + uid).push(userObj);
 			}
-
-			if(userArr.every(user => user.uid !== userObj.uid)) {
-				firebase.database().ref('users').push(userObj);
-			}
+			// let userArr = [], users = snap.val();
+			//
+			// for(let key in users) {
+			// 	userArr.push(users[key]);
+			// }
+			//
+			// if(userArr.every(user => user.uid !== userObj.uid)) {
+			// 	firebase.database().ref('users').push(userObj);
+			// }
 		})
 }
 
