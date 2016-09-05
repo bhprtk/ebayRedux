@@ -7,7 +7,6 @@ import firebase from 'firebase';
 import {browserHistory} from 'react-router';
 import moment from 'moment';
 
-import DisplayHome from './DisplayHome';
 import Navbar from '../common/Navbar';
 import AddListingModal from '../common/AddListingModal';
 import DisplayListings from './DisplayListings';
@@ -86,10 +85,6 @@ class HomePage extends Component {
 					user={this.props.user}
 					addListingModal={this.addListingModal}
 					logout={this.logout} />
-
-				<DisplayListings
-					user={this.props.user}
-					listings={this.props.listings}/>
 
 				<AddListingModal
 					show={this.state.showModal}

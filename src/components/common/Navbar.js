@@ -10,13 +10,18 @@ const Navbar = ({addListingModal, logout, user}) => {
 			<div className="container-fluid">
 				<ul className="nav navbar-nav navbar-left">
 					<li>
-						<Link to="/profile" style={styles.profile}>
+						<Link to="/home/profile" style={styles.profile}>
 							<img src={user.photoURL} style={styles.photo}/>
 							<span style={styles.displayName}>{user.displayName}</span>
 						</Link>
 					</li>
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
+					<li>
+						<Link to="/home/listings">
+							Display Listings
+						</Link>
+					</li>
 					<li>
 						<a
 							role="button"
