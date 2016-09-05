@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import Navbar from '../common/Navbar';
 
-const DisplayProfile = ({user}) => {
+const DisplayHome = ({user}) => {
 	console.log ('user:', user)
 	return (
 		<div>
@@ -16,8 +16,8 @@ const DisplayProfile = ({user}) => {
 	);
 };
 
-DisplayProfile.propTypes = {
+DisplayHome.propTypes = {
 	user: PropTypes.object.isRequired
 }
 
-export default DisplayProfile;
+export default DisplayHome;
