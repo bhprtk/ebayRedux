@@ -4,7 +4,7 @@ import DisplayMyListings from './DisplayMyListings';
 
 const MyListings = ({user, listings}) => {
 	return (
-		<div className="col-md-9 col-sm-9">
+		<div>
 			<DisplayMyListings
 				user={user}
 				listings={listings} />

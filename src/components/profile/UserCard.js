@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 
 const UserCard = ({user}) => {
 	return (
-		<Card className="col-md-3 col-sm-3">
+		<Card>
 		 <CardMedia>
 			 <img src={user.photoURL} />
 		 </CardMedia>

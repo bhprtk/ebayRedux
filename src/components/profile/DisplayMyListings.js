@@ -7,7 +7,7 @@ const DisplayMyListings = ({user, listings}) => {
 		const date = moment(listing.date).fromNow();
 		const price = '$ ' + Number(listing.price).toFixed(2).toString();
 		return (
-			<Card key={index} className="col-md-9 col-sm-9">
+			<Card key={index} style={styles.card} className="col-sm-7 col-md-7">
 				<CardHeader
 					title={user.displayName}
 					subtitle={date}
@@ -34,16 +34,15 @@ const DisplayMyListings = ({user, listings}) => {
 	});
 
 	return (
-		<div
-			className="container">
-					{displayListings}
+		<div>
+			{displayListings}
 		</div>
 	);
 };
 
 const styles = {
 	card: {
-		width: 300
+		margin: 10
 	},
 	cardText: {
 		color: '#696969'
