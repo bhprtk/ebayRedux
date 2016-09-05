@@ -1,14 +1,40 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+
+import UserCard from './UserCard';
+import MyListings from './MyListings';
 
 class ProfilePage extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
-			<div>
-				<h1>profilepage</h1>
+			<div className="container">
+				<div className="row">
+					<UserCard
+						user={this.props.user}/>
+					<MyListings
+						user={this.props.user}
+						listings={this.props.listings}/>
 
+				</div>
 			</div>
-		)
+		);
 	}
 }
 
-export default ProfilePage;
+ProfilePage.propTypes = {
+	user: PropTypes.object.isRequired,
+	listings: PropTypes.array.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+	return {
+		user: state.user,
+		listings: state.listings
+	};
+}
+
+
+export default connect(mapStateToProps)(ProfilePage);
