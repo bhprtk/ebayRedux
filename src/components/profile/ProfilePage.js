@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 import UserCard from './UserCard';
-import DisplayMyListings from './DisplayMyListings';
+import MenuTabs from './MenuTabs';
 
 class ProfilePage extends Component {
 	constructor(props) {
@@ -11,15 +11,15 @@ class ProfilePage extends Component {
 	render() {
 		return (
 			<div className="container">
+
 				<div className="row">
-					<div className="col-md-3 col-sm-3">
+					<div className="col-md-3 col-sm-4">
 						<UserCard
 							user={this.props.user}/>
 					</div>
-					<div className="col-md-9 col-sm-9">
-						<DisplayMyListings
-							user={this.props.user}
-							listings={this.props.listings}/>
+					<div className="col-md-9 col-sm-8">
+						<MenuTabs />
+						{this.props.children}
 					</div>
 
 				</div>

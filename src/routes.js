@@ -6,13 +6,16 @@ import SplashPage from './components/splash/SplashPage';
 import HomePage from './components/home/HomePage';
 import ListingsPage from './components/home/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
+import MyListingsPage from './components/profile/MyListingsPage';
 
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={SplashPage} />
 		<Route path="home" component={HomePage}>
 			<Route path="listings" component={ListingsPage} />
-			<Route path="profile" component={ProfilePage} />
+			<Route path="profile" component={ProfilePage}>
+				<Route path="myListings" component={MyListingsPage}/>
+			</Route>
 		</Route>
 	</Route>
 );
