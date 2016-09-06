@@ -4,13 +4,13 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 const UserCard = ({user}) => {
 	return (
 		<Card>
-		 <CardMedia>
-			 <img src={user.photoURL} />
-		 </CardMedia>
-		 <CardTitle
-			 title={user.displayName}
-			 subtitle={user.email} />
-	 </Card>
+			<CardMedia>
+				<img src={user.photoURL} />
+			</CardMedia>
+			<CardTitle
+				title={user.displayName}
+				subtitle={user.email} />
+		</Card>
  );
 };
 

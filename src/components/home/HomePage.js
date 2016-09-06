@@ -82,6 +82,7 @@ class HomePage extends Component {
 			}
 		};
 		listingActions.createListing(listingObj);
+		this.setState({ showModal: false });
 	}
 
 	render() {

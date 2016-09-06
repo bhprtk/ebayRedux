@@ -7,6 +7,7 @@ import HomePage from './components/home/HomePage';
 import ListingsPage from './components/home/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
 import MyListingsPage from './components/profile/MyListingsPage';
+import MyBidsPage from './components/profile/MyBidsPage';
 
 export default (
 	<Route path="/" component={App}>
@@ -15,6 +16,7 @@ export default (
 			<Route path="listings" component={ListingsPage} />
 			<Route path="profile" component={ProfilePage}>
 				<Route path="myListings" component={MyListingsPage}/>
+				<Route path="myBids" component={MyBidsPage}/>
 			</Route>
 		</Route>
 	</Route>

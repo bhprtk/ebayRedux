@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap';
 
 import AddListingForm from './AddListingForm';
 
-const AddListingModal = ({show, hide, saveListing, onInputChange, onFileChange}) => {
+const AddListingModal = ({show, hide, saveListing, onInputChange}) => {
 	return (
 		<Modal show={show} onHide={hide}>
       <Modal.Header closeButton style={styles.modalHeader}>

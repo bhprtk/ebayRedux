@@ -45,7 +45,8 @@ const Navbar = ({addListingModal, logout, user}) => {
 
 Navbar.propTypes = {
 	user: PropTypes.object.isRequired,
-	addListingModal: PropTypes.func.isRequired
+	addListingModal: PropTypes.func.isRequired,
+	logout: PropTypes.func.isRequired
 };
 
 const styles = {

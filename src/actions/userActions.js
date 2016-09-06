@@ -7,7 +7,6 @@ import * as types from './actionTypes';
 const provider = new firebase.auth.GoogleAuthProvider();
 
 export function getCurrentUserSuccess(user) {
-	console.log ('user:', user)
 	return {
 		type: types.GET_CURRENT_USER_SUCCESS,
 		user
@@ -58,8 +57,7 @@ export function getCurrentUser() {
 				console.log ('no user found:');
 			}
 		});
-
-	}
+	};
 }
 
 export function getCurrentUserFromDb(user) {
@@ -73,5 +71,5 @@ export function getCurrentUserFromDb(user) {
 			dispatch(getListingsByUser(userObj));
 			return dispatch(getCurrentUserSuccess(userObj));
 		});
-	}
+	};
 }

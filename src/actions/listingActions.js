@@ -10,7 +10,6 @@ export function newListingsSuccess(listings) {
 }
 
 export function getListingsByUserSuccess(myListings) {
-	console.log ('myListings:', myListings)
 	return {
 		type: types.GET_LISTINGS_BY_USER_SUCCESS,
 		myListings
@@ -29,16 +28,15 @@ export function newListings() {
 			listings.forEach(listing => {
 				let tempListings = Object.values(listing);
 				newListings.push(...tempListings);
-			})
+			});
 			return dispatch(newListingsSuccess(newListings));
 		});
-	}
+	};
 }
 
 export function getListingsByUser(user) {
 	console.log ('user:', user)
 	return dispatch => {
-		console.log ('user:', user)
 		return firebase.database().ref('listings/' + user.userId).on('value', snap => {
 			const myListings = Object.values(snap.val());
 			return dispatch(getListingsByUserSuccess(myListings));

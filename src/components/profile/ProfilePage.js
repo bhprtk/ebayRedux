@@ -29,12 +29,12 @@ class ProfilePage extends Component {
 }
 
 ProfilePage.propTypes = {
-	user: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		user: state.user,
+		user: state.user
 	};
 }
 
