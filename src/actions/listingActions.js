@@ -20,10 +20,9 @@ export function newListings() {
 			let newListings = [];
 			listings.forEach(listing => {
 				let tempListings = Object.values(listing);
-				tempListings.forEach(tempListing => {
-					newListings.push(tempListing);
-				});
+				newListings.push(...tempListings);
 			})
+			console.log ('newListings:', newListings)
 			return dispatch(newListingsSuccess(newListings));
 		});
 	}
