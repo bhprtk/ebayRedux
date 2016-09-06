@@ -67,12 +67,13 @@ const styles = {
 
 MyListingsPage.propTypes = {
 	user: PropTypes.object.isRequired,
-	listings: PropTypes.array.isRequired
+	myListings: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		user: state.user
+		user: state.user,
+		myListings: state.myListings
 	};
 }
 

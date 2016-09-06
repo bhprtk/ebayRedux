@@ -4,3 +4,4 @@ export const NEW_DATA = 'NEW_DATA';
 export const NEW_IMAGE = 'NEW_IMAGE';
 export const GOTO_HOME = 'GOTO_HOME';
 export const NEW_LISTINGS_SUCCESS = 'NEW_LISTINGS_SUCCESS';
+export const GET_LISTINGS_BY_USER_SUCCESS = 'GET_LISTINGS_BY_USER_SUCCESS';

@@ -6,7 +6,15 @@ export function newListingsSuccess(listings) {
 	return {
 		type: types.NEW_LISTINGS_SUCCESS,
 		listings
-	}
+	};
+}
+
+export function getListingsByUserSuccess(myListings) {
+	console.log ('myListings:', myListings)
+	return {
+		type: types.GET_LISTINGS_BY_USER_SUCCESS,
+		myListings
+	};
 }
 
 export function createListing(listingObj) {
@@ -22,14 +30,18 @@ export function newListings() {
 				let tempListings = Object.values(listing);
 				newListings.push(...tempListings);
 			})
-			console.log ('newListings:', newListings)
 			return dispatch(newListingsSuccess(newListings));
 		});
 	}
 }
 
-export function myListings() {
+export function getListingsByUser(user) {
+	console.log ('user:', user)
 	return dispatch => {
-		return firebase.database().ref()
-	}
+		console.log ('user:', user)
+		return firebase.database().ref('listings/' + user.userId).on('value', snap => {
+			const myListings = Object.values(snap.val());
+			return dispatch(getListingsByUserSuccess(myListings));
+		});
+	};
 }

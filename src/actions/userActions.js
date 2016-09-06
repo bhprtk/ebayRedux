@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 
+import {getListingsByUser} from './listingActions';
+
 import * as types from './actionTypes';
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -61,7 +63,6 @@ export function getCurrentUser() {
 }
 
 export function getCurrentUserFromDb(user) {
-	console.log ('user:', user)
 	return dispatch => {
 		return firebase.database().ref('users/' + user.uid).once('value')
 		.then(snap => {
@@ -69,6 +70,7 @@ export function getCurrentUserFromDb(user) {
 			for(let key in user) {
 				userObj = user[key];
 			}
+			dispatch(getListingsByUser(userObj));
 			return dispatch(getCurrentUserSuccess(userObj));
 		});
 	}

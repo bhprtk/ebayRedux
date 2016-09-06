@@ -1,4 +1,5 @@
 export default {
 	user: {},
-	listings: []
+	listings: [],
+	myListings: []
 };
