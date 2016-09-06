@@ -10,15 +10,27 @@ export function newListingsSuccess(listings) {
 }
 
 export function createListing(listingObj) {
-	firebase.database().ref('listings/' + listingObj.listedBy).push(listingObj);
+	firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
 }
 
 export function newListings() {
 	return dispatch => {
 		return firebase.database().ref('listings').on('value', snap => {
 			let listings = Object.values(snap.val());
-			listings = Object.values(listings[0]);
-			return dispatch(newListingsSuccess(listings));
+			let newListings = [];
+			listings.forEach(listing => {
+				let tempListings = Object.values(listing);
+				tempListings.forEach(tempListing => {
+					newListings.push(tempListing);
+				});
+			})
+			return dispatch(newListingsSuccess(newListings));
 		});
+	}
+}
+
+export function myListings() {
+	return dispatch => {
+		return firebase.database().ref()
 	}
 }

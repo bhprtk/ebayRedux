@@ -4,16 +4,17 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import Masonry from 'react-masonry-component';
 
-const DisplayListings = ({user, listings}) => {
+const DisplayListings = ({listings}) => {
 	let displayListings = listings.map((listing, index) => {
 		const date = moment(listing.date).fromNow();
+		const {listedBy} = listing;
 		const price = '$ ' + Number(listing.price).toFixed(2).toString();
 		return (
 			<Card key={index} className="col-md-6 col-sm-6 col-xs-12">
 				<CardHeader
-					title={user.displayName}
+					title={listedBy.displayName}
 					subtitle={date}
-					avatar={user.photoURL}
+					avatar={listedBy.photoURL}
 					/>
 				<CardMedia>
 					<img src={listing.imageUrl} />
@@ -61,7 +62,6 @@ const styles = {
 };
 
 DisplayListings.propTypes = {
-	user: PropTypes.object.isRequired,
 	listings: PropTypes.array.isRequired
 };
 

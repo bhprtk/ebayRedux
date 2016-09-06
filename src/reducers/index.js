@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
 import user from './userReducer';
-import listings from './listingsReducer';
+import newListings from './newListingsReducer';
 import imageUrl from './imageReducer';
 
 
 const rootReducer = combineReducers({
 	user,
-	listings,
+	newListings,
 	imageUrl
 });
 

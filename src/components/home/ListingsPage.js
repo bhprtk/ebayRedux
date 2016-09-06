@@ -14,7 +14,7 @@ class ListingsPage extends Component {
 			<div>
 				<DisplayListings
 					user={this.props.user}
-					listings={this.props.listings}/>
+					listings={this.props.newListings}/>
 			</div>
 		);
 	}
@@ -22,13 +22,13 @@ class ListingsPage extends Component {
 
 ListingsPage.propTypes = {
 	user: PropTypes.object.isRequired,
-	listings: PropTypes.array.isRequired
+	newListings: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
 		user: state.user,
-		listings: state.listings
+		newListings: state.newListings
 	};
 }
 

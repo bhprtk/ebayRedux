@@ -1,9 +1,14 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import moment from 'moment';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 class MyListingsPage extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
+		console.log ('this.props:', this.props)
 		// let displayListings = listings.map((listing, index) => {
 		// 	const date = moment(listing.date).fromNow();
 		// 	const price = '$ ' + Number(listing.price).toFixed(2).toString();
@@ -65,4 +70,10 @@ MyListingsPage.propTypes = {
 	listings: PropTypes.array.isRequired
 };
 
-export default MyListingsPage;
+function mapStateToProps(state, ownProps) {
+	return {
+		user: state.user
+	};
+}
+
+export default connect(mapStateToProps)(MyListingsPage);

@@ -6,6 +6,7 @@ import * as listingActions from '../../actions/listingActions';
 import firebase from 'firebase';
 import {browserHistory} from 'react-router';
 import moment from 'moment';
+import uuid from 'uuid';
 
 import Navbar from '../common/Navbar';
 import AddListingModal from '../common/AddListingModal';
@@ -66,19 +67,24 @@ class HomePage extends Component {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
 		const {user} = this.props;
+		const listingId = uuid();
+
 		const listingObj = {
 			imageUrl,
 			title,
 			price,
 			description,
 			date: Date.now(),
-			listedBy: user.userId
+			listedBy: {
+				userId: user.userId,
+				displayName: user.displayName,
+				photoURL: user.photoURL
+			}
 		};
 		listingActions.createListing(listingObj);
 	}
 
 	render() {
-		console.log ('this.props.listings:', this.props.listings)
 		return (
 			<div>
 				<Navbar
@@ -104,13 +110,13 @@ HomePage.propTypes = {
 	userActions: PropTypes.object.isRequired,
 	listingActions: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
-	listings: PropTypes.array.isRequired
+	newListings: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
 		user: state.user,
-		listings: state.listings,
+		newListings: state.newListings,
 		imageUrl: state.imageUrl
 	};
 }
