@@ -13,29 +13,14 @@ class ListingsPage extends Component {
 		this.state = {
 			showModal: false
 		}
-
-		this.showModal = this.showModal.bind(this);
-	}
-
-	showModal(e) {
-		console.log ('e.target.dataset.index:', e.target.dataset.index)
-		console.log ('here:');
-	}
-
-	hideListingModal() {
-		this.setstate({ showModal: false });
 	}
 
 	render() {
 		return (
 			<div>
 				<DisplayListings
-					listings={this.props.newListings}
-					showModal={this.showModal}/>
+					listings={this.props.newListings}/>
 
-				{/*<ListingModal
-					show={this.state.showModal}
-					hide={this.hideListingModal}/>*/}
 			</div>
 		);
 	}
