@@ -10,7 +10,6 @@ import uuid from 'uuid';
 
 import Navbar from '../common/Navbar';
 import AddListingModal from '../common/AddListingModal';
-import DisplayListings from './DisplayListings';
 
 class HomePage extends Component {
 	constructor(props) {

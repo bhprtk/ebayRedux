@@ -4,7 +4,9 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import Masonry from 'react-masonry-component';
 
-const DisplayListings = ({listings}) => {
+import BidButton from './BidButton';
+
+const DisplayListings = ({listings, showModal}) => {
 	let displayListings = listings.map((listing, index) => {
 		const date = moment(listing.date).fromNow();
 		const {listedBy} = listing;
@@ -26,11 +28,9 @@ const DisplayListings = ({listings}) => {
 					{listing.description}
 				</CardText>
 				<CardActions>
-					<button className="btn btn-block btn-large" style={styles.bidButton}>
-						<h4>
-							BID
-						</h4>
-					</button>
+					<BidButton
+						currentListing={listing}/>
+
 				</CardActions>
 			</Card>
 		);
@@ -53,11 +53,6 @@ const DisplayListings = ({listings}) => {
 const styles = {
 	cardText: {
 		color: '#696969'
-	},
-	bidButton: {
-		background: '#66BB6A',
-		borderColor: '#66BB6A',
-		color: '#fff'
 	}
 };
 

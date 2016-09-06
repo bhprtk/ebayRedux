@@ -4,17 +4,38 @@ import {bindActionCreators} from 'redux';
 import * as listingActions from '../../actions/listingActions';
 
 import DisplayListings from './DisplayListings';
+import ListingModal from './ListingModal';
 
 class ListingsPage extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			showModal: false
+		}
+
+		this.showModal = this.showModal.bind(this);
 	}
+
+	showModal(e) {
+		console.log ('e.target.dataset.index:', e.target.dataset.index)
+		console.log ('here:');
+	}
+
+	hideListingModal() {
+		this.setstate({ showModal: false });
+	}
+
 	render() {
 		return (
 			<div>
 				<DisplayListings
-					user={this.props.user}
-					listings={this.props.newListings}/>
+					listings={this.props.newListings}
+					showModal={this.showModal}/>
+
+				{/*<ListingModal
+					show={this.state.showModal}
+					hide={this.hideListingModal}/>*/}
 			</div>
 		);
 	}

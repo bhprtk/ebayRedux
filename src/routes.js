@@ -4,9 +4,9 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import SplashPage from './components/splash/SplashPage';
 import HomePage from './components/home/HomePage';
-import ListingsPage from './components/home/ListingsPage';
+import ListingsPage from './components/listings/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
-import MyListingsPage from './components/profile/MyListingsPage';
+import MyListingsPage from './components/listings/MyListingsPage';
 import MyBidsPage from './components/profile/MyBidsPage';
 
 export default (
