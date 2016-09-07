@@ -38,6 +38,7 @@ class BidButton extends Component {
 				<ListingModal
 					show={this.state.showModal}
 					hide={this.hideListingModal}
+					listing={this.props.currentListing}
 					/>
 			</div>
 		);

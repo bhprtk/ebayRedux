@@ -1,14 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import {Modal, Button} from 'react-bootstrap';
 
-const ListingModal = ({show, hide}) => {
+import ListingCard from './ListingCard';
+
+const ListingModal = ({show, hide, listing}) => {
 	return (
 		<Modal show={show} onHide={hide}>
       <Modal.Header closeButton style={styles.modalHeader}>
         <Modal.Title>New Listing</Modal.Title>
       </Modal.Header>
       <Modal.Body style={styles.modalBody}>
-        <h1>hello</h1>
+        <ListingCard 
+					listing={listing}/>
       </Modal.Body>
     </Modal>
 	);
