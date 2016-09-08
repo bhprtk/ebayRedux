@@ -36,6 +36,7 @@ export function googleLogin() {
 		return firebase.auth().signInWithPopup(provider).then(result => {
 			const token = result.credential.accessToken;
 			const user = result.user;
+			console.log ('user:', user)
 			saveUser(user);
 			return dispatch();
 		}).catch(error => {

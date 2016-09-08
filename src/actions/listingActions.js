@@ -20,6 +20,10 @@ export function createListing(listingObj) {
 	firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
 }
 
+export function addBidToListing(currentListing, bidAmount) {
+	firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
+}
+
 export function newListings() {
 	return dispatch => {
 		return firebase.database().ref('listings').on('value', snap => {
@@ -35,7 +39,6 @@ export function newListings() {
 }
 
 export function getListingsByUser(user) {
-	console.log ('user:', user)
 	return dispatch => {
 		return firebase.database().ref('listings/' + user.userId).on('value', snap => {
 			const myListings = Object.values(snap.val());

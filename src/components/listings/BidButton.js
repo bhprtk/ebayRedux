@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import * as listingActions from '../../actions/listingActions';
 import ListingModal from './ListingModal';
 
 class BidButton extends Component {
@@ -12,15 +15,27 @@ class BidButton extends Component {
 
 		this.showModal = this.showModal.bind(this);
 		this.hideListingModal = this.hideListingModal.bind(this);
+		this.priceChange = this.priceChange.bind(this);
+		this.submitBid = this.submitBid.bind(this);
 	}
 
 	showModal() {
-		console.log ('this.props.currentListing:', this.props.currentListing)
 		this.setState({ showModal: true });
 	}
 
 	hideListingModal() {
 		this.setState({ showModal: false });
+	}
+
+	priceChange(e) {
+		this.setState({
+			bidAmount: e.target.value
+		})
+	}
+
+	submitBid(e) {
+		e.preventDefault();
+		this.props.listingActions.addBidToListing(this.props.currentListing, this.state.bidAmount);
 	}
 
 	render() {
@@ -39,6 +54,8 @@ class BidButton extends Component {
 					show={this.state.showModal}
 					hide={this.hideListingModal}
 					listing={this.props.currentListing}
+					submitBid={this.submitBid}
+					priceChange={this.priceChange}
 					/>
 			</div>
 		);
@@ -51,6 +68,19 @@ const styles = {
 		borderColor: '#66BB6A',
 		color: '#fff'
 	}
+};
+
+function mapStateToProps(state, ownProps) {
+	return {
+		listings: state.listings
+	};
 }
 
-export default BidButton;
+function mapDispatchToProps(dispatch) {
+	return {
+		listingActions: bindActionCreators(listingActions, dispatch)
+	};
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BidButton);

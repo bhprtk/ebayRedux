@@ -78,7 +78,8 @@ class HomePage extends Component {
 				userId: user.userId,
 				displayName: user.displayName,
 				photoURL: user.photoURL
-			}
+			},
+			listingId: uuid()
 		};
 		listingActions.createListing(listingObj);
 		this.setState({ showModal: false });

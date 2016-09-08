@@ -2,7 +2,8 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import moment from 'moment';
 
-const ListingCard = ({listing}) => {
+const ListingCard = ({listing, submitBid, priceChange}) => {
+	console.log ('listing:', listing)
 	const {listedBy} = listing;
 	const date = moment(listing.date).fromNow();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
@@ -23,16 +24,27 @@ const ListingCard = ({listing}) => {
 			<CardText style={styles.cardText}>
 				{listing.description}
 			</CardText>
+			<hr/>
 			<CardActions>
-				<form>
-					<label>Enter bid amount</label>
-					<input
-						type="number"
-						className="form-control"
-						min={listing.price}
-						step="0.01"
-						placeholder={listing.price}/>
+
+				<form className="form-inline" onSubmit={submitBid}>
+					<p><strong>Enter bid amount</strong></p>
+				  <div className="form-group">
+				    <div className="input-group">
+				      <div className="input-group-addon">$</div>
+								<input
+									onChange={priceChange}
+									type="number"
+									className="form-control"
+									min={listing.price}
+									step="0.01"
+									placeholder={listing.price}
+									required />
+				    </div>
+						<button className="btn btn-success" style={styles.button}>Do it</button>
+				  </div>
 				</form>
+
 			</CardActions>
 		</Card>
 	);
@@ -41,6 +53,12 @@ const ListingCard = ({listing}) => {
 const styles = {
 	cardText: {
 		color: '#696969'
+	},
+	formDiv: {
+		width: '100%'
+	},
+	button: {
+		// marginLeft: 10
 	}
 };
 
