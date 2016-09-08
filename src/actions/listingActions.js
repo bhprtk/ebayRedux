@@ -21,12 +21,13 @@ export function createListing(listingObj) {
 }
 
 export function addBidToListing(currentListing, bidAmount) {
-	firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
+	// firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
 }
 
 export function newListings() {
 	return dispatch => {
 		return firebase.database().ref('listings').on('value', snap => {
+			console.log ('snap.val():', snap.val())
 			let listings = Object.values(snap.val());
 			let newListings = [];
 			listings.forEach(listing => {

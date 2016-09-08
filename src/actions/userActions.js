@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-
+import axios from 'axios';
 import {getListingsByUser} from './listingActions';
 
 import * as types from './actionTypes';
@@ -19,17 +19,20 @@ function saveUser(user) {
 		displayName,
 		email,
 		photoURL,
-		userId: uid
+		uid
 	};
-
-	firebase.database().ref('users/' + uid).once('value')
-		.then(snap => {
-			if(!snap.val()) {
-				firebase.database().ref('users/' + uid).push(userObj);
-			}
-		});
+	axios.post('/api/users', userObj)
+		.then(res => {
+			console.log ('res:', res);
+		})
+		.catch(console.error);
+	// firebase.database().ref('users/' + uid).once('value')
+	// 	.then(snap => {
+	// 		if(!snap.val()) {
+	// 			firebase.database().ref('users/' + uid).push(userObj);
+	// 		}
+	// 	});
 }
-
 
 export function googleLogin() {
 	return function(dispatch) {
@@ -37,6 +40,7 @@ export function googleLogin() {
 			const token = result.credential.accessToken;
 			const user = result.user;
 			console.log ('user:', user)
+
 			saveUser(user);
 			return dispatch();
 		}).catch(error => {
