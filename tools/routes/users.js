@@ -11,7 +11,8 @@ router.route('/')
 	.post((req, res) => {
 		User.saveNewUser(req.body, (err, savedUser) => {
 			if(err) res.status(400).send(err);
-			res.send(savedUser);
+			console.log ('nope:')
+			res.send();
 		})
 	})
 
