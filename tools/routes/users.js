@@ -9,10 +9,9 @@ router.route('/')
 		res.send();
 	})
 	.post((req, res) => {
-		User.saveNewUser(req.body, (err, savedUser) => {
+		User.saveNewUser(req.body, (err, newUser) => {
 			if(err) res.status(400).send(err);
-			console.log ('nope:')
-			res.send();
+			res.send(newUser);
 		})
 	})
 

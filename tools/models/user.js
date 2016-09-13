@@ -16,8 +16,15 @@ userSchema.statics.saveNewUser = function(user, cb) {
       return res.status(409).send({ message: 'Email is already taken' });
     }
 		console.log ('nope:')
+		User.create(user)
+			.then(res => {
+				cb(null, res);
+			})
+			.catch(err => {
+				cb(err);
+			})
 	})
-	cb(null, user);
+	// cb(null, user);
 }
 
 const User = mongoose.model('User', userSchema);
