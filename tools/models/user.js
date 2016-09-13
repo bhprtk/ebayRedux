@@ -8,23 +8,15 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.saveNewUser = function(user, cb) {
-	console.log ('user in user model:', user);
-	console.log ('what:');
 	const {email} = user;
 	this.findOne({email}, (err, existingUser) => {
 		if (existingUser) {
-      return res.status(409).send({ message: 'Email is already taken' });
+      return cb({ error: 'Email is already taken' });
     }
-		console.log ('nope:')
 		User.create(user)
-			.then(res => {
-				cb(null, res);
-			})
-			.catch(err => {
-				cb(err);
-			})
+			.then(res => cb(null, res))
+			.catch(err => cb(err));
 	})
-	// cb(null, user);
 }
 
 const User = mongoose.model('User', userSchema);

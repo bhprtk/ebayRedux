@@ -25,7 +25,7 @@ function saveUser(user) {
 		.then(res => {
 			console.log ('res:', res);
 		})
-		.catch(console.error);
+		.catch(err => console.log ('err:', err));
 	// firebase.database().ref('users/' + uid).once('value')
 	// 	.then(snap => {
 	// 		if(!snap.val()) {
@@ -40,7 +40,6 @@ export function googleLogin() {
 			const token = result.credential.accessToken;
 			const user = result.user;
 			console.log ('user:', user)
-
 			saveUser(user);
 			return dispatch();
 		}).catch(error => {
