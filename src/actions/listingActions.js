@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-
+import axios from 'axios';
 import * as types from './actionTypes';
 
 export function newListingsSuccess(listings) {
@@ -17,11 +17,14 @@ export function getListingsByUserSuccess(myListings) {
 }
 
 export function createListing(listingObj) {
-	firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
+	// firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
+	axios.post('/api/listings', listingObj)
+		.then(res => console.log ('res:', res))
+		.catch(err => console.log ('err:', err));
 }
 
 export function addBidToListing(currentListing, bidAmount) {
-	// firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
+	firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
 }
 
 export function newListings() {

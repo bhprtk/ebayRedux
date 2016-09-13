@@ -20,7 +20,7 @@ import {
 
 const store = configureStore();
 store.dispatch(googleLogin());
-// store.dispatch(getCurrentUser());
+store.dispatch(getCurrentUser());
 store.dispatch(newListings());
 
 render (

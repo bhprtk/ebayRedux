@@ -32,9 +32,7 @@ export function saveUser(user) {
 						return dispatch(getCurrentUserSuccess(res.data));
 					});
 				}
-			})
-
-
+			});
 	}
 }
 
@@ -43,7 +41,6 @@ export function googleLogin() {
 		return firebase.auth().signInWithPopup(provider).then(result => {
 			const token = result.credential.accessToken;
 			const user = result.user;
-			console.log ('user:', user)
 			return dispatch(saveUser(user));
 		}).catch(error => {
 			const errorCode = error.code;
@@ -54,36 +51,38 @@ export function googleLogin() {
 	};
 }
 
-// export function getCurrentUser() {
-// 	return dispatch => {
-// 		firebase.auth()
-// 		.onAuthStateChanged(user => {
-// 			if(user) {
-// 				return dispatch(getCurrentUserFromDb(user));
-// 			} else {
-// 				console.log ('no user found:');
-// 			}
-// 		});
-// 	};
-// }
-//
-// export function getCurrentUserFromDb(user) {
-// 	return dispatch => {
-// 		return axios.get(`/api/users/${user.email}`)
-// 			.then(res => {
-// 				// diççspatch(getListingsByUser(res));
-// 				return dispatch(getCurrentUserSuccess(res));
-// 			})
-// 			.catch(err => console.log ('err:', err));
-// 		// firebase.database().ref('users/' + user.uid).once('value')
-// 		// .then(snap => {
-// 		// 	console.log ('snap.val():', snap.val())
-// 		// 	let userObj, user = snap.val();
-// 		// 	for(let key in user) {
-// 		// 		userObj = user[key];
-// 		// 	}
-// 		// 	dispatch(getListingsByUser(userObj));
-// 		// 	return dispatch(getCurrentUserSuccess(userObj));
-// 		// });
-// 	};
-// }
+export function getCurrentUser() {
+	return dispatch => {
+		firebase.auth()
+		.onAuthStateChanged(user => {
+			console.log ('user:', user)
+			if(user) {
+				return dispatch(getCurrentUserFromDb(user));
+			} else {
+				console.log ('no user found:');
+			}
+		});
+	};
+}
+
+export function getCurrentUserFromDb(user) {
+	return dispatch => {
+		return axios.get(`/api/users/${user.email}`)
+			.then(res => {
+				console.log ('res:', res)
+				// diççspatch(getListingsByUser(res));
+				return dispatch(getCurrentUserSuccess(res.data));
+			})
+			.catch(err => console.log ('err:', err));
+		// firebase.database().ref('users/' + user.uid).once('value')
+		// .then(snap => {
+		// 	console.log ('snap.val():', snap.val())
+		// 	let userObj, user = snap.val();
+		// 	for(let key in user) {
+		// 		userObj = user[key];
+		// 	}
+		// 	dispatch(getListingsByUser(userObj));
+		// 	return dispatch(getCurrentUserSuccess(userObj));
+		// });
+	};
+}
