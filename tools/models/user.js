@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.saveNewUser = function(user, cb) {
+	console.log ('user in saveNewUser:', user)
 	const {email} = user;
 	this.findOne({email}, (err, existingUser) => {
 		if (existingUser) {

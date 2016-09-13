@@ -13,6 +13,14 @@ router.route('/')
 			if(err) res.status(400).send(err);
 			res.send(newUser);
 		})
+	});
+
+router.route('/:email')
+	.get((req, res) => {
+		const {email} = req.params;
+		User.findOne({email})
+			.then(user => res.send(user))
+			.catch(err => res.status(400).send(err));
 	})
 
 module.exports = router;

@@ -13,25 +13,29 @@ export function getCurrentUserSuccess(user) {
 	};
 }
 
-function saveUser(user) {
-	const {displayName, email, photoURL, uid} = user;
-	const userObj = {
-		displayName,
-		email,
-		photoURL,
-		uid
-	};
-	axios.post('/api/users', userObj)
-		.then(res => {
-			console.log ('res:', res);
-		})
-		.catch(err => console.log ('err:', err));
-	// firebase.database().ref('users/' + uid).once('value')
-	// 	.then(snap => {
-	// 		if(!snap.val()) {
-	// 			firebase.database().ref('users/' + uid).push(userObj);
-	// 		}
-	// 	});
+export function saveUser(user) {
+	return dispatch => {
+		const {displayName, email, photoURL, uid} = user;
+		const userObj = {
+			displayName,
+			email,
+			photoURL,
+			uid
+		};
+		axios.get(`/api/users/${user.email}`)
+			.then(res => {
+				if(res.data) {
+					return dispatch(getCurrentUserSuccess(res.data));
+				} else {
+					return axios.post('/api/users', userObj)
+					.then(res => {
+						return dispatch(getCurrentUserSuccess(res.data));
+					});
+				}
+			})
+
+
+	}
 }
 
 export function googleLogin() {
@@ -40,8 +44,7 @@ export function googleLogin() {
 			const token = result.credential.accessToken;
 			const user = result.user;
 			console.log ('user:', user)
-			saveUser(user);
-			return dispatch();
+			return dispatch(saveUser(user));
 		}).catch(error => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
@@ -51,29 +54,36 @@ export function googleLogin() {
 	};
 }
 
-export function getCurrentUser() {
-	return dispatch => {
-		firebase.auth()
-		.onAuthStateChanged(user => {
-			if(user) {
-				return dispatch(getCurrentUserFromDb(user));
-			} else {
-				console.log ('no user found:');
-			}
-		});
-	};
-}
-
-export function getCurrentUserFromDb(user) {
-	return dispatch => {
-		return firebase.database().ref('users/' + user.uid).once('value')
-		.then(snap => {
-			let userObj, user = snap.val();
-			for(let key in user) {
-				userObj = user[key];
-			}
-			dispatch(getListingsByUser(userObj));
-			return dispatch(getCurrentUserSuccess(userObj));
-		});
-	};
-}
+// export function getCurrentUser() {
+// 	return dispatch => {
+// 		firebase.auth()
+// 		.onAuthStateChanged(user => {
+// 			if(user) {
+// 				return dispatch(getCurrentUserFromDb(user));
+// 			} else {
+// 				console.log ('no user found:');
+// 			}
+// 		});
+// 	};
+// }
+//
+// export function getCurrentUserFromDb(user) {
+// 	return dispatch => {
+// 		return axios.get(`/api/users/${user.email}`)
+// 			.then(res => {
+// 				// diççspatch(getListingsByUser(res));
+// 				return dispatch(getCurrentUserSuccess(res));
+// 			})
+// 			.catch(err => console.log ('err:', err));
+// 		// firebase.database().ref('users/' + user.uid).once('value')
+// 		// .then(snap => {
+// 		// 	console.log ('snap.val():', snap.val())
+// 		// 	let userObj, user = snap.val();
+// 		// 	for(let key in user) {
+// 		// 		userObj = user[key];
+// 		// 	}
+// 		// 	dispatch(getListingsByUser(userObj));
+// 		// 	return dispatch(getCurrentUserSuccess(userObj));
+// 		// });
+// 	};
+// }
