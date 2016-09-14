@@ -12,7 +12,7 @@ router.route('/')
 		User.saveNewUser(req.body, (err, newUser) => {
 			if(err) res.status(400).send(err);
 			res.send(newUser);
-		})
+		});
 	});
 
 router.route('/:email')

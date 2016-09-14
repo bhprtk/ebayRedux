@@ -5,7 +5,8 @@ const listingSchema = new mongoose.Schema({
 	description: String,
 	imageURL: String,
 	price: Number,
-	title: String
+	title: String,
+	listedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 const Listing = mongoose.model('Listing', listingSchema);

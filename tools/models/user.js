@@ -4,11 +4,22 @@ const userSchema = new mongoose.Schema({
 	uid: {type: String, unique: true},
 	email: {type: String, unique: true},
 	displayName: String,
-	photoURL: String
+	photoURL: String,
+	listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Listing'}]
 });
 
+userSchema.statics.addListingToUser = function(userId, listingId, cb) {
+	this.findById(userId)
+		.then(user => {
+			user.listings.push(listingId);
+			user.save()
+				.then(savedUser => cb(null, savedUser))
+				.catch(err => cb(err))
+			})
+		.catch(err => console.log ('err:', err));
+}
+
 userSchema.statics.saveNewUser = function(user, cb) {
-	console.log ('user in saveNewUser:', user)
 	const {email} = user;
 	this.findOne({email}, (err, existingUser) => {
 		if (existingUser) {

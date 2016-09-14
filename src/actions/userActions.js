@@ -55,7 +55,6 @@ export function getCurrentUser() {
 	return dispatch => {
 		firebase.auth()
 		.onAuthStateChanged(user => {
-			console.log ('user:', user)
 			if(user) {
 				return dispatch(getCurrentUserFromDb(user));
 			} else {
@@ -69,7 +68,6 @@ export function getCurrentUserFromDb(user) {
 	return dispatch => {
 		return axios.get(`/api/users/${user.email}`)
 			.then(res => {
-				console.log ('res:', res)
 				// diççspatch(getListingsByUser(res));
 				return dispatch(getCurrentUserSuccess(res.data));
 			})

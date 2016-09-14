@@ -66,6 +66,7 @@ class HomePage extends Component {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
 		const {user} = this.props;
+		console.log ('user:', user)
 		const listingId = uuid();
 
 		const listingObj = {
@@ -74,12 +75,8 @@ class HomePage extends Component {
 			price,
 			description,
 			date: Date.now(),
-			listedBy: {
-				userId: user.userId,
-				displayName: user.displayName,
-				photoURL: user.photoURL
-			},
-			listingId: uuid()
+			listedBy: user._id
+			// listingId: uuid()
 		};
 		listingActions.createListing(listingObj);
 		this.setState({ showModal: false });
