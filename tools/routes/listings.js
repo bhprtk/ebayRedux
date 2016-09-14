@@ -10,8 +10,10 @@ router.route('/')
 		res.send();
 	})
 	.post((req, res) => {
+		console.log ('req.body:', req.body)
 		Listing.create(req.body)
 			.then(newListing => {
+				console.log ('newListing:', newListing)
 				User.addListingToUser(req.body.listedBy, newListing._id, (err, savedUser) => {
 					res.send({newListing, savedUser});
 				})

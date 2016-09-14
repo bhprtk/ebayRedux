@@ -1,12 +1,21 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import * as types from './actionTypes';
+import {updateUser} from './userActions';
 
 export function newListingsSuccess(listings) {
 	return {
 		type: types.NEW_LISTINGS_SUCCESS,
 		listings
 	};
+}
+
+export function oneNewListing(listing) {
+	console.log ('listing:', listing)
+	return {
+		type: types.ONE_NEW_LISTING,
+		listing
+	}
 }
 
 export function getListingsByUserSuccess(myListings) {
@@ -17,10 +26,17 @@ export function getListingsByUserSuccess(myListings) {
 }
 
 export function createListing(listingObj) {
+	console.log ('listingObj:', listingObj)
 	// firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
-	axios.post('/api/listings', listingObj)
-		.then(res => console.log ('res:', res))
+	return dispatch => {
+		console.log('here')
+		return axios.post('/api/listings', listingObj)
+		.then(res => {
+			return dispatch(oneNewListing(res.data.newListing))
+		})
 		.catch(err => console.log ('err:', err));
+
+	}
 }
 
 export function addBidToListing(currentListing, bidAmount) {

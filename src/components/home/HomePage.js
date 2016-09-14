@@ -65,8 +65,7 @@ class HomePage extends Component {
 	saveListing(e) {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
-		const {user} = this.props;
-		console.log ('user:', user)
+		const {user, listingActions} = this.props;
 		const listingId = uuid();
 
 		const listingObj = {

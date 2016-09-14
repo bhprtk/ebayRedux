@@ -13,6 +13,13 @@ export function getCurrentUserSuccess(user) {
 	};
 }
 
+export function updateUser(user) {
+	return {
+		type: types.UPDATE_USER,
+		user
+	}
+}
+
 export function saveUser(user) {
 	return dispatch => {
 		const {displayName, email, photoURL, uid} = user;
