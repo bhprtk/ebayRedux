@@ -10,19 +10,23 @@ router.route('/')
 		res.send();
 	})
 	.post((req, res) => {
-		console.log ('req.body:', req.body)
 		Listing.create(req.body)
 			.then(newListing => {
-				console.log ('newListing:', newListing)
 				User.addListingToUser(req.body.listedBy, newListing._id, (err, savedUser) => {
-					res.send({newListing, savedUser});
+					let arr = [];
+					let sendObj = {};
+					Promise.all([
+						Listing.findById(newListing._id)
+							.populate('listedBy'),
+						User.findById(savedUser._id)
+							.populate('listings')
+						])
+						.then(val => {
+							res.send(val);
+						})
 				})
 			})
 			.catch(err => console.log ('err:', err));
-		// Listing.saveNewListing(req.body, (err, newListing) => {
-		// 	if(err) res.status(400).send(err);
-		// 	res.send(newListing);
-		// });
 	});
 
 module.exports = router;

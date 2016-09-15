@@ -11,7 +11,6 @@ export function newListingsSuccess(listings) {
 }
 
 export function oneNewListing(listing) {
-	console.log ('listing:', listing)
 	return {
 		type: types.ONE_NEW_LISTING,
 		listing
@@ -32,7 +31,8 @@ export function createListing(listingObj) {
 		console.log('here')
 		return axios.post('/api/listings', listingObj)
 		.then(res => {
-			return dispatch(oneNewListing(res.data.newListing))
+			console.log ('res:', res)
+			return dispatch(oneNewListing(res.data[0]))
 		})
 		.catch(err => console.log ('err:', err));
 
