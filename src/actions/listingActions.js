@@ -14,7 +14,7 @@ export function oneNewListing(listing) {
 	return {
 		type: types.ONE_NEW_LISTING,
 		listing
-	}
+	};
 }
 
 export function getAllListingsSuccess(listings) {
@@ -33,7 +33,6 @@ export function getListingsByUserSuccess(myListings) {
 
 export function createListing(listingObj) {
 	return dispatch => {
-		console.log('here')
 		return axios.post('/api/listings', listingObj)
 		.then(res => {
 			console.log ('res:', res)
@@ -60,6 +59,6 @@ export function getListingsByUser(user) {
 		return axios.get(`/api/users/getListingsByUser/${user._id}`)
 			.then(res => dispatch(getListingsByUserSuccess(res.data.listings)))
 			.catch(err => console.log ('err:', err))
-
+	 
 	};
 }

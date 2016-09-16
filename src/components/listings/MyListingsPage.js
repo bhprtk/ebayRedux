@@ -10,8 +10,6 @@ class MyListingsPage extends Component {
 		super(props);
 	}
 	render() {
-		console.log ('this.props:', this.props)
-
 		return (
 			<div>
 				<DisplayMyListings
