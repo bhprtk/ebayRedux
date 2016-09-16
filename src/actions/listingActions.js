@@ -17,6 +17,13 @@ export function oneNewListing(listing) {
 	}
 }
 
+export function getAllListingsSuccess(listings) {
+	return {
+		type: types.GET_ALL_LISTINGS_SUCCESS,
+		listings
+	};
+}
+
 export function getListingsByUserSuccess(myListings) {
 	return {
 		type: types.GET_LISTINGS_BY_USER_SUCCESS,
@@ -41,6 +48,14 @@ export function createListing(listingObj) {
 
 export function addBidToListing(currentListing, bidAmount) {
 	firebase.database().ref(`listings/${currentListing.listedBy.userId}`).update({currentBid: bidAmount});
+}
+
+export function getAllListings() {
+	return dispatch => {
+		return axios.get('/api/listings/')
+			.then(res => dispatch(getAllListingsSuccess(res.data)))
+			.catch(err => console.log ('err:', err));
+	}
 }
 
 export function newListings() {

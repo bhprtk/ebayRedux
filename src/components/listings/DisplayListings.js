@@ -10,7 +10,6 @@ const DisplayListings = ({listings, showModal}) => {
 	let displayListings = listings.map((listing, index) => {
 		const date = moment(listing.date).fromNow();
 		const {listedBy} = listing;
-		console.log ('listedBy:', listedBy)
 		const price = '$ ' + Number(listing.price).toFixed(2).toString();
 		return (
 			<Card key={index} className="col-md-6 col-sm-6 col-xs-12">
