@@ -8,12 +8,14 @@ import ListingsPage from './components/listings/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
 import MyListingsPage from './components/listings/MyListingsPage';
 import MyBidsPage from './components/profile/MyBidsPage';
+import SingleListingPage from './components/listings/SingleListingPage';
 
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={SplashPage} />
 		<Route path="home" component={HomePage}>
 			<Route path="listings" component={ListingsPage} />
+			<Route path="singleListing/:listingId" component={SingleListingPage} />
 			<Route path="profile" component={ProfilePage}>
 				<Route path="myListings" component={MyListingsPage}/>
 				<Route path="myBids" component={MyBidsPage}/>

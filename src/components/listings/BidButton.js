@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 
 import * as listingActions from '../../actions/listingActions';
 import ListingModal from './ListingModal';
@@ -17,6 +18,12 @@ class BidButton extends Component {
 		this.hideListingModal = this.hideListingModal.bind(this);
 		this.priceChange = this.priceChange.bind(this);
 		this.submitBid = this.submitBid.bind(this);
+		this.navigateToCurrentListing = this.navigateToCurrentListing.bind(this);
+	}
+
+	navigateToCurrentListing() {
+		const path = `/home/singleListing/${this.props.currentListing._id}`
+		browserHistory.push(path);
 	}
 
 	showModal() {
@@ -41,13 +48,19 @@ class BidButton extends Component {
 	render() {
 		return (
 			<div>
-				<button
+				{/*<button
 					className="btn btn-block btn-large"
 					style={styles.bidButton}
 					onClick={this.showModal}>
 					<h4>
 						BID
 					</h4>
+				</button>*/}
+				<button
+					className="btn btn-block btn-large"
+					style={styles.bidButton}
+					onClick={this.navigateToCurrentListing}>
+					BID
 				</button>
 
 				<ListingModal
