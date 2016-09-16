@@ -6,7 +6,6 @@ import User from '../models/user';
 
 router.route('/')
 	.get((req, res) => {
-		console.log('hit route')
 		Listing.find({})
 			.populate('listedBy')
 			.then(listings => res.send(listings))
@@ -29,5 +28,6 @@ router.route('/')
 			})
 			.catch(err => console.log ('err:', err));
 	});
+
 
 module.exports = router;

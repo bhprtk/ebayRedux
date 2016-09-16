@@ -75,7 +75,7 @@ export function getCurrentUserFromDb(user) {
 	return dispatch => {
 		return axios.get(`/api/users/${user.email}`)
 			.then(res => {
-				// diççspatch(getListingsByUser(res));
+				dispatch(getListingsByUser(res.data));
 				return dispatch(getCurrentUserSuccess(res.data));
 			})
 			.catch(err => console.log ('err:', err));

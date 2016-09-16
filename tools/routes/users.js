@@ -21,6 +21,15 @@ router.route('/:email')
 		User.findOne({email})
 			.then(user => res.send(user))
 			.catch(err => res.status(400).send(err));
+	});
+
+router.route('/getListingsByUser/:userId')
+	.get((req, res) => {
+		User.findById(req.params.userId)
+			.select('listings')
+			.populate('listings')
+			.then(listings => res.send(listings))
+			.catch(err => res.status(400).send(err))
 	})
 
 module.exports = router;

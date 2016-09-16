@@ -32,8 +32,6 @@ export function getListingsByUserSuccess(myListings) {
 }
 
 export function createListing(listingObj) {
-	console.log ('listingObj:', listingObj)
-	// firebase.database().ref('listings/' + listingObj.listedBy.userId).push(listingObj);
 	return dispatch => {
 		console.log('here')
 		return axios.post('/api/listings', listingObj)
@@ -42,8 +40,7 @@ export function createListing(listingObj) {
 			return dispatch(oneNewListing(res.data[0]))
 		})
 		.catch(err => console.log ('err:', err));
-
-	}
+	};
 }
 
 export function addBidToListing(currentListing, bidAmount) {
@@ -58,26 +55,11 @@ export function getAllListings() {
 	}
 }
 
-export function newListings() {
-	return dispatch => {
-		return firebase.database().ref('listings').on('value', snap => {
-			console.log ('snap.val():', snap.val())
-			let listings = Object.values(snap.val());
-			let newListings = [];
-			listings.forEach(listing => {
-				let tempListings = Object.values(listing);
-				newListings.push(...tempListings);
-			});
-			return dispatch(newListingsSuccess(newListings));
-		});
-	};
-}
-
 export function getListingsByUser(user) {
 	return dispatch => {
-		return firebase.database().ref('listings/' + user.userId).on('value', snap => {
-			const myListings = Object.values(snap.val());
-			return dispatch(getListingsByUserSuccess(myListings));
-		});
+		return axios.get(`/api/users/getListingsByUser/${user._id}`)
+			.then(res => dispatch(getListingsByUserSuccess(res.data.listings)))
+			.catch(err => console.log ('err:', err))
+
 	};
 }
