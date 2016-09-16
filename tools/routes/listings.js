@@ -29,5 +29,12 @@ router.route('/')
 			.catch(err => console.log ('err:', err));
 	});
 
+router.route(`/:id`)
+	.get((req, res) => {
+		Listing.findById(req.params.id)
+			.populate('listedBy')
+			.then(listing => res.send(listing))
+			.catch(err => res.status(400).send(err))
+	})
 
 module.exports = router;

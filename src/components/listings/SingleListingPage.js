@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 
 class SingleListingPage extends Component {
 	constructor(props) {
@@ -13,4 +14,10 @@ class SingleListingPage extends Component {
 	}
 }
 
-export default SingleListingPage;
+function mapStateToProps(state, ownProps) {
+	return {
+		listing: state.listingById
+	}
+}
+
+export default connect(mapStateToProps)(SingleListingPage);

@@ -22,8 +22,13 @@ class BidButton extends Component {
 	}
 
 	navigateToCurrentListing() {
-		const path = `/home/singleListing/${this.props.currentListing._id}`
-		browserHistory.push(path);
+		const {listingActions} = this.props;
+		listingActions.getListingById(this.props.currentListing._id)
+			.then(() => {
+				const path = `/home/singleListing/${this.props.currentListing._id}`
+				browserHistory.push(path);
+			})
+			.catch(err => console.log ('err:', err))
 	}
 
 	showModal() {

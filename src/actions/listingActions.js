@@ -31,6 +31,13 @@ export function getListingsByUserSuccess(myListings) {
 	};
 }
 
+export function getListingByIdSuccess(listing) {
+	return {
+		type: types.GET_LISTING_BY_ID_SUCCESS,
+		listing
+	}
+}
+
 export function createListing(listingObj) {
 	return dispatch => {
 		return axios.post('/api/listings', listingObj)
@@ -59,6 +66,13 @@ export function getListingsByUser(user) {
 		return axios.get(`/api/users/getListingsByUser/${user._id}`)
 			.then(res => dispatch(getListingsByUserSuccess(res.data.listings)))
 			.catch(err => console.log ('err:', err))
-	 
 	};
+}
+
+export function getListingById(listingId) {
+	return dispatch => {
+		return axios.get(`/api/listings/${listingId}`)
+			.then(res => dispatch(getListingByIdSuccess(res.data)))
+			.catch(err => console.log ('err:', err))
+	}
 }
