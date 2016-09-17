@@ -11,8 +11,13 @@ class SplashPage extends Component {
 	render() {
 		return (
 			<div>
-				<h1>trade this</h1>
-				<LoginButton />
+				<div className="splash">
+					<div className="container">
+						<h1>trade this</h1>
+
+					</div>
+				</div>
+				<h1>hello</h1>
 			</div>
 		);
 	}

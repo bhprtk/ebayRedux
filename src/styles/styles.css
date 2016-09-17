@@ -1,0 +1,9 @@
+.splash {
+	background-image: url("http://i.imgur.com/sXIFbLD.jpg");
+	color: #fff;
+	background-size: 100% 100%;
+  background-repeat: no-repeat;
+	height: 100vh;
+	/*margin-top: -20px;*/
+
+}

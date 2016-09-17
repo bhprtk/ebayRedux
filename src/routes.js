@@ -8,7 +8,7 @@ import ListingsPage from './components/listings/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
 import MyListingsPage from './components/listings/MyListingsPage';
 import MyBidsPage from './components/profile/MyBidsPage';
-import SingleListingPage from './components/listings/SingleListingPage';
+import SingleListingPage from './components/singleListing/SingleListingPage';
 
 export default (
 	<Route path="/" component={App}>
