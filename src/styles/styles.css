@@ -1,9 +1,13 @@
-.splash {
-	background-image: url("http://i.imgur.com/sXIFbLD.jpg");
-	color: #fff;
-	background-size: 100% 100%;
+.parallax {
+  background-image: url("http://i.imgur.com/sXIFbLD.jpg");
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
   background-repeat: no-repeat;
-	height: 100vh;
-	/*margin-top: -20px;*/
+  background-size: cover;
+	margin-top: -10px;
+}
 
+.innerDiv {
+	width:800px; margin:0 auto;
 }
