@@ -23,10 +23,13 @@ class SplashPage extends Component {
 
 	render() {
 		return (
-			<div>
-				<Parallax
-					scrollDown={this.scrollDown}/>
-				<Categories />
+			<div
+				className="text-center"
+				style={styles.container}>
+				<div>
+					<p style={styles.title}>AUCTION THIS</p>
+
+				</div>
 			</div>
 
 
@@ -35,7 +38,20 @@ class SplashPage extends Component {
 }
 
 const styles = {
-
+	container: {
+		height: "105vh",
+		background: "#37474F",
+		color: "#f9f9f9",
+		marginTop: "-20px",
+		paddingTop: "40vh"
+	},
+	titleDiv: {
+		background: "#455A64",
+		height: 100
+	},
+	title: {
+		fontSize: 64
+	}
 }
 
 export default SplashPage;

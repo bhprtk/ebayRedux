@@ -23,13 +23,24 @@ class LoginButton extends Component {
 	render() {
 		return (
 			<div>
-				<button
-					className="btn btn-default"
-					onClick={this.signIn}>
+				<a
+					role="button"
+					className="btn btn-success"
+					onClick={this.signIn}
+					style={styles.searchBtn}>
 					<span className="fa fa-google"></span> Sign In with Google
-				</button>
+				</a>
 			</div>
 		);
+	}
+}
+
+const styles = {
+	searchBtn: {
+		borderColor: '#fff',
+		borderWidth: 2,
+		background: 'transparent',
+		width: 250
 	}
 }
 

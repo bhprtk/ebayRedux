@@ -1,18 +1,13 @@
 import React, {PropTypes} from 'react';
+import LoginButton from './LoginButton';
 
 const Parallax = ({scrollDown}) => {
 	return (
 		<div className="parallax">
 			<div className="text-center" style={styles.outerDiv}>
-				<h1>FIND THE BEST HEADPHONES</h1>
+				<h1>AUCTION THIS</h1>
 				<br/>
-				<a
-					className="btn btn-success"
-					style={styles.searchBtn}
-					role="button"
-					onClick={scrollDown}>
-					<h5>SEARCH HEADPHONES</h5>
-				</a>
+				<LoginButton />
 			</div>
 		</div>
 	);
