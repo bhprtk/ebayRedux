@@ -25,7 +25,7 @@ class LoginButton extends Component {
 			<div>
 				<a
 					role="button"
-					className="btn btn-success"
+					className="btn btn-success text-center"
 					onClick={this.signIn}
 					style={styles.searchBtn}>
 					<span className="fa fa-google"></span> Sign In with Google
@@ -40,7 +40,8 @@ const styles = {
 		borderColor: '#fff',
 		borderWidth: 2,
 		background: 'transparent',
-		width: 250
+		width: 300,
+		fontSize: 25
 	}
 }
 

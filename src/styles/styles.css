@@ -8,6 +8,11 @@
 	/*margin-top: -10px;*/
 }
 
+.title {
+  font-size: 70px;
+  font-family: 'Acme', sans-serif;
+}
+
 /*.innerDiv {
 	width:800px; margin:0 auto;
 }*/

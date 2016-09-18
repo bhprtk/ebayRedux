@@ -27,8 +27,9 @@ class SplashPage extends Component {
 				className="text-center"
 				style={styles.container}>
 				<div>
-					<p style={styles.title}>AUCTION THIS</p>
-
+					<p className="title">AUCTION THIS</p>
+					<br/>
+					<LoginButton />
 				</div>
 			</div>
 
@@ -43,15 +44,19 @@ const styles = {
 		background: "#37474F",
 		color: "#f9f9f9",
 		marginTop: "-20px",
-		paddingTop: "40vh"
+		paddingTop: "30vh"
 	},
 	titleDiv: {
 		background: "#455A64",
 		height: 100
 	},
-	title: {
-		fontSize: 64
-	}
+	// title: {
+	// 	fontSize: 64,
+	// 	fontFamily: 'Passion One', 'cursive',
+	// 	// fontFamily: 'Acme', 'sans-serif',
+	// 	// fontFamily: 'Luckiest Guy', 'cursive',
+	// 	// fontFamily: 'Paytone One',
+	// }
 }
 
 export default SplashPage;
