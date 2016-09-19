@@ -24,6 +24,7 @@ class BidButton extends Component {
 	}
 
 	render() {
+		const {listing} = this.props;
 		return (
 			<div>
 				<a
@@ -35,7 +36,8 @@ class BidButton extends Component {
 
 				<BidModal
 					show={this.state.showModal}
-					hide={this.hideModal}/>
+					hide={this.hideModal}
+					listing={listing}/>
 			</div>
 		);
 	}

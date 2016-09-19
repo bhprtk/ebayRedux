@@ -8,7 +8,8 @@ const ProductDetails = ({listing}) => {
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
 	return (
 			<div className="col-md-6 col-sm-6">
-				<BidButton />
+				<BidButton
+					listing={listing}/>
 				<h1>{listing.title}</h1>
 				<br/>
 				<div className="row">

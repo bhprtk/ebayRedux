@@ -1,0 +1,32 @@
+import React, {PropTypes} from 'react';
+
+const InputBid = ({listing}) => {
+	return (
+		<form className="form-inline">
+			<p><strong>Enter bid amount</strong></p>
+			<div className="form-group">
+				<div className="input-group">
+					<div className="input-group-addon">$</div>
+						<input
+							style={styles.inputForm}
+							type="number"
+							className="form-control"
+							min={listing.price}
+							step="0.01"
+							placeholder={listing.price}
+							required />
+				</div>
+				<button className="btn btn-success">Do it</button>
+			</div>
+		</form>
+	)
+}
+
+const styles = {
+	inputForm: {
+		height: 50,
+		fontSize: 30
+	}
+}
+
+export default InputBid;
