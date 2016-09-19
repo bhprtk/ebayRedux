@@ -31,7 +31,7 @@ class BidButton extends Component {
 					className="btn btn-success col-md-12 col-sm-12 col-xs-12"
 					onClick={this.onClickBid}
 					style={styles.button}>
-					<h3>BID</h3>
+					<h3>CLICK HERE TO BID</h3>
 				</a>
 
 				<BidModal
@@ -46,6 +46,11 @@ class BidButton extends Component {
 const styles = {
 	button: {
 		marginBottom: 20,
+		borderWidth: 4,
+		borderColor: "green",
+		color: "green",
+		background: "#fff",
+		width: "100%"
 	}
 }
 

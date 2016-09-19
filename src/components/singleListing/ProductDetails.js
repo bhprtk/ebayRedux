@@ -17,7 +17,7 @@ const ProductDetails = ({listing}) => {
 						<h4>{price}</h4>
 					</div>
 					<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-						<h4>Current Bid</h4>
+						<h4>Highest Bid: $00.00</h4>
 					</div>
 
 				</div>

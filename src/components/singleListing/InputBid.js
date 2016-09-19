@@ -6,7 +6,7 @@ const InputBid = ({listing}) => {
 			<p><strong>Enter bid amount</strong></p>
 			<div className="form-group">
 				<div className="input-group">
-					<div className="input-group-addon">$</div>
+					<div className="input-group-addon" style={styles.addon}>$</div>
 						<input
 							style={styles.inputForm}
 							type="number"
@@ -16,7 +16,12 @@ const InputBid = ({listing}) => {
 							placeholder={listing.price}
 							required />
 				</div>
-				<button className="btn btn-success">Do it</button>
+				<button
+					className="btn"
+					role="button"
+					style={styles.button}>
+					<strong>BID</strong>
+				</button>
 			</div>
 		</form>
 	)
@@ -26,6 +31,18 @@ const styles = {
 	inputForm: {
 		height: 50,
 		fontSize: 30
+	},
+	addon: {
+		fontSize: 30,
+		color: "#696969"
+	},
+	button :{
+		margin: 20,
+		borderWidth: 2,
+		borderColor: "green",
+		color: "green",
+		background: "#fff",
+		width: 100
 	}
 }
 
