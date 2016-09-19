@@ -8,15 +8,18 @@ const ProductDetails = ({listing}) => {
 		<div className="col-md-6 col-sm-6">
 			<h1>{listing.title}</h1>
 			<br/>
-			<div style={styles.priceDiv} className="text-center">
-				<h4>{price}</h4>
+			<div className="row">
+				<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5">
+					<h4>{price}</h4>
+				</div>
+				<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+					<h4>Current Bid</h4>
+				</div>
+
 			</div>
+
 			<br/>
-			<div style={styles.priceDiv} className="text-center">
-				<h4>Current Bid</h4>
-			</div>
-			<br/>
-			<div>
+			<div className="row">
 				<p><strong>Description:</strong></p>
 				<p>{listing.description}</p>
 
@@ -27,9 +30,9 @@ const ProductDetails = ({listing}) => {
 
 const styles = {
 	priceDiv: {
-		width: 250,
+		// width: 250,
 		padding: 5,
-		// borderRadius: 10,
+		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: '#696969',
 		borderStyle: 'solid',
