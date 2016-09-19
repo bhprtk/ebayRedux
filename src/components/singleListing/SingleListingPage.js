@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
+import ProductImage from './ProductImage';
+import ProductDetails from './ProductDetails';
 
 class SingleListingPage extends Component {
 	constructor(props) {
@@ -8,11 +10,13 @@ class SingleListingPage extends Component {
 	}
 
 	render() {
+		const {listing} = this.props;
+		console.log ('listing:', listing)
 		return (
 			<div className="container-fluid">
-				<h1>SingleListingPage</h1>
-				<div className="col-md-4 col-sm-4">
-					<h1>singleListing</h1>
+				<div>
+					<ProductImage image={listing.imageUrl}/>
+					<ProductDetails listing={listing} />
 				</div>
 			</div>
 		)
