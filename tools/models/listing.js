@@ -6,7 +6,9 @@ const listingSchema = new mongoose.Schema({
 	imageUrl: String,
 	price: Number,
 	title: String,
-	listedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+	listedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	bids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bid'}],
+	highestBid: {type: mongoose.Schema.Types.ObjectId, ref: 'Bid'}
 });
 
 const Listing = mongoose.model('Listing', listingSchema);

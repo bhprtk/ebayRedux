@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import InputBid from './InputBid';
 
-const BidModal = ({show, hide, listing}) => {
+const BidModal = ({show, hide, listing, onBidSubmit, onBidChange}) => {
 	const date = moment(listing.date).fromNow();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
 	return (
@@ -25,7 +25,9 @@ const BidModal = ({show, hide, listing}) => {
 					<br/>
 					<div className="row">
 						<InputBid
-							listing={listing}/>
+							listing={listing}
+							onBidSubmit={onBidSubmit}
+							onBidChange={onBidChange}/>
 					</div>
 				</div>
 

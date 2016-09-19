@@ -1,13 +1,14 @@
 import React, {PropTypes} from 'react';
 
-const InputBid = ({listing}) => {
+const InputBid = ({listing, onBidSubmit, onBidChange}) => {
 	return (
-		<form className="form-inline">
+		<form className="form-inline" onSubmit={onBidSubmit}>
 			<p><strong>Enter bid amount</strong></p>
 			<div className="form-group">
 				<div className="input-group">
 					<div className="input-group-addon" style={styles.addon}>$</div>
 						<input
+							onChange={onBidChange}
 							style={styles.inputForm}
 							type="number"
 							className="form-control"
