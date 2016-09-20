@@ -31,6 +31,7 @@ class BidButton extends Component {
 		const date = Date.now();
 
 		bidActions.addBidToListing({listing, currentBid, user, date});
+		this.setState({showModal: false});
 	}
 
 	onClickBid() {

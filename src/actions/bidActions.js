@@ -1,12 +1,12 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 import {updateUser} from './userActions';
-import {getListingsByUserSuccess} from './listingActions';
+import {getListingByIdSuccess} from './listingActions';
 
 export function addBidToListing(listing){
 	return dispatch => {
 		return axios.post('/api/bids', listing)
-			.then(res => console.log ('res:', res))
+			.then(res => dispatch(getListingByIdSuccess(res.data[0])))
 			.catch(err => console.log ('err:', err));
 	};
 }

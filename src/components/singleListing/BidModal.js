@@ -6,6 +6,7 @@ import InputBid from './InputBid';
 
 const BidModal = ({show, hide, listing, onBidSubmit, onBidChange}) => {
 	const date = moment(listing.date).fromNow();
+	const highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
 	return (
 		<Modal show={show} onHide={hide}>
@@ -19,7 +20,7 @@ const BidModal = ({show, hide, listing, onBidSubmit, onBidChange}) => {
 							<h4>{price}</h4>
 						</div>
 						<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-							<h4>Current Bid</h4>
+							<h4>{highestBid}</h4>
 						</div>
 					</div>
 					<br/>

@@ -17,7 +17,6 @@ class SingleListingPage extends Component {
 	}
 
 	componentWillMount() {
-		console.log ('this.props:', this.props)
 		const {listingActions} = this.props;
 		const {listingId} = this.props.params;
 		listingActions.getListingById(listingId);

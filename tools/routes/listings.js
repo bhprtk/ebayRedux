@@ -32,7 +32,7 @@ router.route('/')
 router.route(`/:id`)
 	.get((req, res) => {
 		Listing.findById(req.params.id)
-			.populate('listedBy')
+			.populate('listedBy bids highestBid')
 			.then(listing => res.send(listing))
 			.catch(err => res.status(400).send(err))
 	})

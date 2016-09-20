@@ -12,9 +12,9 @@ const InputBid = ({listing, onBidSubmit, onBidChange}) => {
 							style={styles.inputForm}
 							type="number"
 							className="form-control"
-							min={listing.price}
+							min={listing.highestBid.amount}
 							step="0.01"
-							placeholder={listing.price}
+							placeholder={listing.highestBid.amount}
 							required />
 				</div>
 				<button

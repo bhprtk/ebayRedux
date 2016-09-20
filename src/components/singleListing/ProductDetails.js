@@ -4,9 +4,9 @@ import moment from 'moment';
 import BidButton from './BidButton';
 
 const ProductDetails = ({listing}) => {
-	console.log ('listing:', listing)
 	const date = moment(listing.date).fromNow();
-	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
+	const price = 'Initial Price: $' + Number(listing.price).toFixed(2).toString();
+	const highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
 	return (
 			<div className="col-md-6 col-sm-6">
 				<BidButton
@@ -18,7 +18,7 @@ const ProductDetails = ({listing}) => {
 						<h4>{price}</h4>
 					</div>
 					<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-						<h4>Highest Bid: $00.00</h4>
+						<h4>{highestBid}</h4>
 					</div>
 
 				</div>
