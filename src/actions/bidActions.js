@@ -6,7 +6,7 @@ import {getListingsByUserSuccess} from './listingActions';
 export function addBidToListing(listing){
 	return dispatch => {
 		return axios.post('/api/bids', listing)
-			.then(res => dispatch(getListingsByUserSuccess(res.data.dbListing)))
+			.then(res => console.log ('res:', res))
 			.catch(err => console.log ('err:', err));
 	};
 }

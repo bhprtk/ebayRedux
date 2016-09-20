@@ -7,6 +7,7 @@ import Bid from '../models/bid';
 
 router.route('/')
 	.post((req, res) => {
+		console.log('here')
 		const {listing, currentBid, user, date} = req.body;
 		const bidObj = {
 			listing,
@@ -14,29 +15,26 @@ router.route('/')
 			user,
 			date
 		};
+
 		Bid.create(bidObj)
 			.then(bid => {
-				Listing.findById(listing._id)
-					.then(listing => {
-						listing.bids.push(bid._id);
-						listing.highestBid = bid._id;
-						listing.save()
-							.then(dbListing => {
-								User.findById(user._id)
-									.then(dbUser => {
-										dbUser.bids.push(bid);
-										dbUser.save()
-										 	.then(savedUser => {
-												User.findById(savedUser._id)
-													.populate()
-													.then(finaluser => {
-														res.send({finalUser, dbListing, bid})
-
-													})
-										})
-									})
-							})
-					})
+				Promise.all([
+					Listing.findById(listing._id)
+						.then(dbListing => {
+							dbListing.bids.push(bid._id);
+							return dbListing.save()
+						})
+						.then(listing => Listing.findById(listing._id).populate('listedBy bids highestBid')),
+					User.findById(user._id)
+						.then(dbUser => {
+							dbUser.bids.push(bid._id);
+							return dbUser.save();
+						})
+						.then(user => User.findById(user._id).populate('listings bids')),
+					Bid.findById(bid._id).populate('user listing')
+				])
+				.then(val => res.send(val))
+				.catch(err => console.log ('err:', err));
 			})
 			.catch(err => console.log ('err:', err));
 	})
