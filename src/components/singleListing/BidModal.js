@@ -6,8 +6,13 @@ import InputBid from './InputBid';
 
 const BidModal = ({show, hide, listing, onBidSubmit, onBidChange}) => {
 	const date = moment(listing.date).fromNow();
-	const highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
+	let highestBid;
+	if(listing.highestBid) {
+		highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
+	} else {
+		highestBid = 'Highest Bid: $0.00';
+	}
 	return (
 		<Modal show={show} onHide={hide}>
       <Modal.Header closeButton style={styles.modalHeader}>

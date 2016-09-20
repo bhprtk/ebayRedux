@@ -46,13 +46,12 @@ class BidButton extends Component {
 		const {listing} = this.props;
 		return (
 			<div>
-				<a
-					className="btn btn-success col-md-12 col-sm-12 col-xs-12"
+				<button
+					className="btn col-md-12 col-sm-12 col-xs-12"
 					onClick={this.onClickBid}
 					style={styles.button}>
 					<h3>CLICK HERE TO BID</h3>
-				</a>
-
+				</button>
 				<BidModal
 					show={this.state.showModal}
 					hide={this.hideModal}
@@ -68,9 +67,10 @@ const styles = {
 	button: {
 		marginBottom: 20,
 		borderWidth: 4,
-		borderColor: "green",
-		color: "green",
-		background: "#fff",
+		borderColor: "#696969",
+		// color: "green",
+		background: "#f9f9f9",
+		// background: "#558B2F",
 		width: "100%"
 	}
 };

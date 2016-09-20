@@ -1,6 +1,14 @@
 import React, {PropTypes} from 'react';
 
 const InputBid = ({listing, onBidSubmit, onBidChange}) => {
+	let minVal, placeholder;
+	if(listing.highestBid) {
+		minVal = listing.highestBid.amount;
+		placeholder = listing.highestBid.amount;
+	} else {
+		minVal = listing.price;
+		placeholder = listing.price;
+	}
 	return (
 		<form className="form-inline" onSubmit={onBidSubmit}>
 			<p><strong>Enter bid amount</strong></p>
@@ -12,9 +20,9 @@ const InputBid = ({listing, onBidSubmit, onBidChange}) => {
 							style={styles.inputForm}
 							type="number"
 							className="form-control"
-							min={listing.highestBid.amount}
+							min={minVal}
 							step="0.01"
-							placeholder={listing.highestBid.amount}
+							placeholder={placeholder}
 							required />
 				</div>
 				<button

@@ -22,6 +22,7 @@ router.route('/')
 					Listing.findById(listing._id)
 						.then(dbListing => {
 							dbListing.bids.push(bid._id);
+							dbListing.highestBid = bid._id;
 							return dbListing.save()
 						})
 						.then(listing => Listing.findById(listing._id).populate('listedBy bids highestBid')),

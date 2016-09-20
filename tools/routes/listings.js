@@ -27,6 +27,11 @@ router.route('/')
 				})
 			})
 			.catch(err => console.log ('err:', err));
+	})
+	.delete((req, res) => {
+		Listing.remove({})
+			.then(res.send())
+			.catch(err => console.log ('err:', err));
 	});
 
 router.route(`/:id`)

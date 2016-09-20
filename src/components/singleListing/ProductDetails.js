@@ -6,7 +6,12 @@ import BidButton from './BidButton';
 const ProductDetails = ({listing}) => {
 	const date = moment(listing.date).fromNow();
 	const price = 'Initial Price: $' + Number(listing.price).toFixed(2).toString();
-	const highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
+	let highestBid;
+	if(listing.highestBid) {
+		highestBid = 'Highest Bid: $' + (listing.highestBid.amount).toFixed(2).toString();
+	} else {
+		highestBid = 'Highest Bid: $0.00';
+	}
 	return (
 			<div className="col-md-6 col-sm-6">
 				<BidButton
