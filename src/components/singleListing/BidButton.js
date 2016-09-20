@@ -26,9 +26,11 @@ class BidButton extends Component {
 
 	onBidSubmit(e) {
 		e.preventDefault();
-		const {bidActions, listing} = this.props;
-		console.log ('this.state.currentBid:', this.state.currentBid)
-		bidActions.addBidToListing(listing)
+		const {bidActions, listing, user} = this.props;
+		const {currentBid} = this.state;
+		const date = Date.now();
+
+		bidActions.addBidToListing({listing, currentBid, user, date});
 	}
 
 	onClickBid() {
@@ -74,7 +76,7 @@ const styles = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		
+		user: state.user
 	};
 }
 

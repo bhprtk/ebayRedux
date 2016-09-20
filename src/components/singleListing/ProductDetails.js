@@ -4,6 +4,7 @@ import moment from 'moment';
 import BidButton from './BidButton';
 
 const ProductDetails = ({listing}) => {
+	console.log ('listing:', listing)
 	const date = moment(listing.date).fromNow();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
 	return (
