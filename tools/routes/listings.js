@@ -7,7 +7,7 @@ import User from '../models/user';
 router.route('/')
 	.get((req, res) => {
 		Listing.find({})
-			.populate('listedBy')
+			.populate('listedBy bids highestBid')
 			.then(listings => res.send(listings))
 			.catch(err => res.status(400).send(err));
 	})
