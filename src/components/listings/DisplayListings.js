@@ -8,7 +8,6 @@ import BidButton from './BidButton';
 
 const DisplayListings = ({listings, showModal}) => {
 	let displayListings = listings.map((listing, index) => {
-		console.log ('listing:', listing)
 		const date = moment(listing.date).fromNow();
 		const {listedBy} = listing;
 		const tempPrice = 'Initial Price: $' + Number(listing.price).toFixed(2).toString();

@@ -10,14 +10,14 @@ class ProfilePage extends Component {
 	}
 	render() {
 		return (
-			<div className="container">
+			<div className="container-fluid">
 
 				<div className="row">
-					<div className="col-md-3 col-sm-4">
+					<div className="col-md-3 col-sm-3">
 						<UserCard
 							user={this.props.user}/>
 					</div>
-					<div className="col-md-9 col-sm-8">
+					<div className="col-md-6 col-sm-6">
 						<MenuTabs />
 						{this.props.children}
 					</div>

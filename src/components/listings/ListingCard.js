@@ -4,7 +4,6 @@ import moment from 'moment';
 
 const ListingCard = ({listing, submitBid, priceChange}) => {
 	const {listedBy} = listing;
-	console.log ('listedBy:', listedBy)
 	const date = moment(listing.date).fromNow();
 	const price = 'Initial Price: $ ' + Number(listing.price).toFixed(2).toString();
 

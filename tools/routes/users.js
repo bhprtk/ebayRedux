@@ -27,8 +27,14 @@ router.route('/getListingsByUser/:userId')
 	.get((req, res) => {
 		User.findById(req.params.userId)
 			.select('listings')
-			.populate('listings')
-			.then(listings => res.send(listings))
+			.populate({
+				path: 'listings',
+				populate: {
+					path: 'highestBid bids',
+					model: 'Listing'
+				}
+			})
+			.then(userListings => res.send(userListings))
 			.catch(err => res.status(400).send(err))
 	})
 
