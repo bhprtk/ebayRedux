@@ -62,6 +62,7 @@ export function getAllListings() {
 }
 
 export function getListingsByUser(user) {
+	console.log ('user:', user)
 	return dispatch => {
 		return axios.get(`/api/users/getListingsByUser/${user._id}`)
 			.then(res => {

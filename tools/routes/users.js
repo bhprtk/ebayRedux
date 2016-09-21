@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import User from '../models/user';
+import Listing from '../models/listing';
 
 router.route('/')
 	.get((req, res) => {
@@ -34,17 +35,12 @@ router.route('/:email')
 
 router.route('/getListingsByUser/:userId')
 	.get((req, res) => {
-		User.findById(req.params.userId)
-			.select('listings')
-			.populate({
-				path: 'listings',
-				populate: {
-					path: 'highestBid bids',
-					model: 'Listing'
-				}
-			})
-			.then(userListings => res.send(userListings))
-			.catch(err => res.status(400).send(err))
+		const {userId} = req.params;
+		Listing.find({})
+			.populate('listedBy bids highestBid')
+			.then(listings => listings.filter(listing => listing.listedBy._id.equals(userId)))
+			.then(listings => res.send(listings))
+			.catch(err => res.status(400).send(err));
 	})
 
 module.exports = router;
