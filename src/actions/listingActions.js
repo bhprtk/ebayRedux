@@ -65,10 +65,7 @@ export function getListingsByUser(user) {
 	console.log ('user:', user)
 	return dispatch => {
 		return axios.get(`/api/users/getListingsByUser/${user._id}`)
-			.then(res => {
-				console.log ('res:', res)
-				dispatch(getListingsByUserSuccess(res.data.listings))
-			})
+			.then(res => dispatch(getListingsByUserSuccess(res.data)))
 			.catch(err => console.log ('err:', err))
 	};
 }
