@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import * as listingActions from '../../actions/listingActions';
+import {bindActionCreators} from 'redux';
 
 import DisplayMyListings from './DisplayMyListings';
 
@@ -9,6 +11,12 @@ class MyListingsPage extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	componentWillMount() {
+		const {listingActions, user} = this.props;
+		listingActions.getListingsByUser(user);
+	}
+
 	render() {
 		return (
 			<div>
@@ -46,4 +54,10 @@ function mapStateToProps(state, ownProps) {
 	};
 }
 
-export default connect(mapStateToProps)(MyListingsPage);
+function mapDispatchToProps(dispatch) {
+	return {
+		listingActions: bindActionCreators(listingActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyListingsPage);

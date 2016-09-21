@@ -5,8 +5,17 @@ import User from '../models/user';
 
 router.route('/')
 	.get((req, res) => {
-		console.log ('in /api/users:');
-		res.send();
+		User.find({})
+			.populate('listings bids')
+			// .populate({
+			// 	path: 'listings',
+			// 	populate: {
+			// 		path: 'highestBid bids',
+			// 		model: 'User'
+			// 	}
+			// })
+			.then(users => res.send(users))
+			.catch(err => console.log ('err:', err))
 	})
 	.post((req, res) => {
 		User.saveNewUser(req.body, (err, newUser) => {

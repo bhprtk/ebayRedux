@@ -9,10 +9,14 @@ import ListingModal from './ListingModal';
 class ListingsPage extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			showModal: false
 		}
+	}
+
+	componentWillMount() {
+		const {listingActions} = this.props;
+		listingActions.getAllListings();
 	}
 
 	render() {

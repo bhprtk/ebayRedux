@@ -74,20 +74,7 @@ export function getCurrentUser() {
 export function getCurrentUserFromDb(user) {
 	return dispatch => {
 		return axios.get(`/api/users/${user.email}`)
-			.then(res => {
-				dispatch(getListingsByUser(res.data));
-				return dispatch(getCurrentUserSuccess(res.data));
-			})
+			.then(res => dispatch(getCurrentUserSuccess(res.data)))
 			.catch(err => console.log ('err:', err));
-		// firebase.database().ref('users/' + user.uid).once('value')
-		// .then(snap => {
-		// 	console.log ('snap.val():', snap.val())
-		// 	let userObj, user = snap.val();
-		// 	for(let key in user) {
-		// 		userObj = user[key];
-		// 	}
-		// 	dispatch(getListingsByUser(userObj));
-		// 	return dispatch(getCurrentUserSuccess(userObj));
-		// });
 	};
 }
