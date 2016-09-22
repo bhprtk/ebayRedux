@@ -44,6 +44,7 @@ router.route('/getBidsByUser/:userId')
 		const {userId} = req.params;
 		Bid.find({})
 			.populate('listing user')
+			.deepPopulate('listing.listedBy listing.bids listing.highestBid')
 			.then(bids => bids.filter(bid => bid.user._id.equals(userId)))
 			.then(bids => res.send(bids))
 			.catch(err => res.status(400).send(err));

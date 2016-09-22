@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import * as bidActions from '../../actions/bidActions';
+import DisplayMyBids from './DisplayMyBids';
 
 class MyBidsPage extends Component {
 	constructor(props) {
@@ -17,9 +18,9 @@ class MyBidsPage extends Component {
 	render() {
 		console.log ('this.props.myBids:', this.props.myBids)
 		return (
-			<h1>
-				MyBidsPage
-			</h1>
+			<div>
+				<DisplayMyBids bids={this.props.myBids}/>
+			</div>
 		);
 	}
 }
