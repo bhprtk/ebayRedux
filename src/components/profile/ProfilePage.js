@@ -8,6 +8,11 @@ class ProfilePage extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	componentDidMount() {
+		console.log ('this.props.user:', this.props.user)
+	}
+
 	render() {
 		return (
 			<div className="container-fluid">

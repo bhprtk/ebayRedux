@@ -4,6 +4,7 @@ import moment from 'moment';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import * as listingActions from '../../actions/listingActions';
 import {bindActionCreators} from 'redux';
+import $ from 'jquery';
 
 import DisplayMyListings from './DisplayMyListings';
 
@@ -12,16 +13,20 @@ class MyListingsPage extends Component {
 		super(props);
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		const {listingActions, user} = this.props;
 		listingActions.getListingsByUser(user);
 	}
 
 	render() {
+
 		return (
 			<div>
-				<DisplayMyListings
-					listings={this.props.myListings}/>
+				<If condition={!$.isEmptyObject(this.props.myListings)}>
+					<DisplayMyListings
+						listings={this.props.myListings}/>
+
+				</If>
 			</div>
 		);
 
