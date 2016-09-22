@@ -68,6 +68,14 @@ const styles = {
 		background: '#66BB6A',
 		borderColor: '#66BB6A',
 		color: '#fff'
+	},
+	priceDiv: {
+		padding: 5,
+		borderRadius: 10,
+		borderWidth: 2,
+		borderColor: '#696969',
+		borderStyle: 'solid',
+		background: "#fff"
 	}
 };
 

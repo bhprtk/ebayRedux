@@ -7,7 +7,7 @@ import HomePage from './components/home/HomePage';
 import ListingsPage from './components/listings/ListingsPage';
 import ProfilePage from './components/profile/ProfilePage';
 import MyListingsPage from './components/listings/MyListingsPage';
-import MyBidsPage from './components/profile/MyBidsPage';
+import MyBidsPage from './components/MyBids/MyBidsPage';
 import SingleListingPage from './components/singleListing/SingleListingPage';
 
 export default (

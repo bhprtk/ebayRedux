@@ -7,7 +7,6 @@ import Bid from '../models/bid';
 
 router.route('/')
 	.post((req, res) => {
-		console.log('here')
 		const {listing, currentBid, user, date} = req.body;
 		const bidObj = {
 			listing,
@@ -38,6 +37,16 @@ router.route('/')
 				.catch(err => console.log ('err:', err));
 			})
 			.catch(err => console.log ('err:', err));
+	});
+
+router.route('/getBidsByUser/:userId')
+	.get((req, res) => {
+		const {userId} = req.params;
+		Bid.find({})
+			.populate('listing user')
+			.then(bids => bids.filter(bid => bid.user._id.equals(userId)))
+			.then(bids => res.send(bids))
+			.catch(err => res.status(400).send(err));
 	})
 
 module.exports = router;

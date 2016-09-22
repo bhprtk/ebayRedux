@@ -2,5 +2,6 @@ export default {
 	user: {},
 	listings: [],
 	myListings: [],
-	listingById: {}
+	listingById: {},
+	myBids: []
 };
