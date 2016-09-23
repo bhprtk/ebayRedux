@@ -45,6 +45,7 @@
     "react-scroll": "^1.4.0",
     "react-swipeable-views": "^0.7.3",
     "redux": "3.5.2",
+    "redux-logger": "^2.6.1",
     "redux-thunk": "2.0.1",
     "toastr": "2.1.2",
     "uuid": "^2.0.2"
