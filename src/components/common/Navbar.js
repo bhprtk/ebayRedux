@@ -6,7 +6,7 @@ import Avatar from 'material-ui/Avatar';
 
 const Navbar = ({addListingModal, logout, user}) => {
 	return (
-		<nav className="navbar navbar-default" style={styles.navbar}>
+		<nav className="navbar navbar-default navbar-fixed-top" style={styles.navbar}>
 			<div className="container-fluid">
 				<ul className="nav navbar-nav navbar-left">
 					<li>

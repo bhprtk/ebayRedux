@@ -24,4 +24,10 @@ class MenuTabs extends Component {
   }
 }
 
+const styles = {
+  container: {
+    position: 'fixed',
+  }
+}
+
 export default MenuTabs;

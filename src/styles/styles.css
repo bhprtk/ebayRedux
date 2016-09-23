@@ -17,6 +17,10 @@ body {
   font-family: 'Acme', sans-serif;
 }
 
+.scrollable {
+    height: 80vh; /* or any value */
+    overflow-y: auto;
+}
 /*.innerDiv {
 	width:800px; margin:0 auto;
 }*/

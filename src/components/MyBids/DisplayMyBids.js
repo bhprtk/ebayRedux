@@ -31,7 +31,7 @@ const DisplayMyBids = ({bids}) => {
 		// 	</div>
 		// )
 		return (
-			<div className="list-group" key={index}>
+			<div key={index}>
 				<DisplayMyBidsCard
 					price={price}
 					date={displayDate}
@@ -42,7 +42,7 @@ const DisplayMyBids = ({bids}) => {
 		);
 	})
 	return (
-		<div>
+		<div className="list-group scrollable">
 			{displayBids}
 		</div>
 	)

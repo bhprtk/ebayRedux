@@ -18,4 +18,10 @@ UserCard.propTypes = {
 	user: PropTypes.object.isRequired
 };
 
+const styles = {
+	card: {
+		position: 'fixed',
+	}
+}
+
 export default UserCard;

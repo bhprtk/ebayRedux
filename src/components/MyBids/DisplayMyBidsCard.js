@@ -9,20 +9,24 @@ const DisplayMyBidsCard = ({price, date, listing, user, bid}) => {
 	const linkTo = `/home/singleListing/${listing._id}`
 
 	return (
-		<Link className="list-group-item" to={linkTo}>
-			<div className="media">
-			  <div className="media-left">
-		      <img src={listing.imageUrl} style={styles.image}/>
-			  </div>
-			  <div className="media-body">
-			    <h4 className="media-heading" style={styles.mediaHeading}>{listing.title} <small className="pull-right"><i>{date}</i></small></h4>
-					{price}
-					<div style={styles.displayBid} className="text-center">
-						{displayBid}
+		<Card>
+			<Link className="list-group-item" to={linkTo}>
+				<div className="media">
+					<div className="media-left">
+						<img src={listing.imageUrl} style={styles.image}/>
 					</div>
-			  </div>
-			</div>
-		</Link>
+					<div className="media-body">
+						<h4 className="media-heading" style={styles.mediaHeading}>{listing.title} <small className="pull-right"><i>{date}</i></small></h4>
+						{price}
+						<div style={styles.displayBid} className="text-center">
+							{displayBid}
+						</div>
+					</div>
+				</div>
+			</Link>
+
+		</Card>
+
 	);
 };
 
@@ -36,7 +40,7 @@ const styles = {
 	},
 	displayBid: {
 		// padding: 5,
-		// borderRadius: 10,
+		borderRadius: 5,
 		width: "50%",
 		borderWidth: 2,
 		borderColor: '#696969',

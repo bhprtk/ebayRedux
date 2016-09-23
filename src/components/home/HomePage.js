@@ -83,7 +83,7 @@ class HomePage extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={styles.container}>
 				<Navbar
 					user={this.props.user}
 					addListingModal={this.addListingModal}
@@ -100,6 +100,12 @@ class HomePage extends Component {
 			</div>
 
 		);
+	}
+}
+
+const styles = {
+	container: {
+		paddingTop: 75
 	}
 }
 
