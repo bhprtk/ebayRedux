@@ -1,27 +1,28 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Link} from 'react-router';
 
 const DisplayMyBidsCard = ({price, date, listing, user, bid}) => {
 	const {listedBy} = listing;
-	console.log ('price:', price)
-	console.log ('date:', date)
-	console.log ('listing:', listing)
-	console.log ('user:', user)
-	console.log ('bid:', bid)
+
+	const displayBid = "Your bid: $" + bid.amount.toFixed(2).toString();
+	const linkTo = `/home/singleListing/${listing._id}`
+
 	return (
-	<li className="list-group-item">
-		<div className="media">
-		  <div className="media-left">
-	      <img src={listing.imageUrl} style={styles.image}/>
-		  </div>
-		  <div className="media-body">
-		    <h4 className="media-heading">{listing.title}</h4>
-		     <i>Bid {date}</i>
-				 {price}
-				 Your bid: {bid.amount}
-		  </div>
-		</div>
-	</li>
+		<Link className="list-group-item" to={linkTo}>
+			<div className="media">
+			  <div className="media-left">
+		      <img src={listing.imageUrl} style={styles.image}/>
+			  </div>
+			  <div className="media-body">
+			    <h4 className="media-heading" style={styles.mediaHeading}>{listing.title} <small className="pull-right"><i>{date}</i></small></h4>
+					{price}
+					<div style={styles.displayBid} className="text-center">
+						{displayBid}
+					</div>
+			  </div>
+			</div>
+		</Link>
 	);
 };
 
@@ -32,6 +33,19 @@ const styles = {
 	image: {
 		height: 100,
 		width: 100
+	},
+	displayBid: {
+		// padding: 5,
+		// borderRadius: 10,
+		width: "50%",
+		borderWidth: 2,
+		borderColor: '#696969',
+		borderStyle: 'solid',
+		background: "#fff",
+		marginTop: 15
+	},
+	mediaHeading: {
+		marginBottom: 15
 	}
 }
 

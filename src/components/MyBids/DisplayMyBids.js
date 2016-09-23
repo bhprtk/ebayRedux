@@ -6,7 +6,7 @@ import DisplayMyBidsCard from './DisplayMyBidsCard';
 const DisplayMyBids = ({bids}) => {
 	const displayBids = bids.map((bid, index) => {
 		const {date, listing, user} = bid;
-		const displayDate = moment(date).fromNow();
+		const displayDate = moment(date).format('llll');
 		const tempPrice = 'Initial Price: $' + Number(listing.price).toFixed(2).toString();
 		let highestBid;
 		if(listing.highestBid) {
@@ -31,14 +31,14 @@ const DisplayMyBids = ({bids}) => {
 		// 	</div>
 		// )
 		return (
-			<ul className="list-group">
+			<div className="list-group" key={index}>
 				<DisplayMyBidsCard
 					price={price}
 					date={displayDate}
 					listing={listing}
 					user={user}
 					bid={bid}/>
-			</ul>
+			</div>
 		);
 	})
 	return (
