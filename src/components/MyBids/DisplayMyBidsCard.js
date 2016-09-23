@@ -1,12 +1,13 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
-const DisplayMyBidsCard = ({price, date, listing, user}) => {
+const DisplayMyBidsCard = ({price, date, listing, user, bid}) => {
 	const {listedBy} = listing;
 	console.log ('price:', price)
 	console.log ('date:', date)
 	console.log ('listing:', listing)
 	console.log ('user:', user)
+	console.log ('bid:', bid)
 	return (
 	<li className="list-group-item">
 		<div className="media">
@@ -17,6 +18,7 @@ const DisplayMyBidsCard = ({price, date, listing, user}) => {
 		    <h4 className="media-heading">{listing.title}</h4>
 		     <i>Bid {date}</i>
 				 {price}
+				 Your bid: {bid.amount}
 		  </div>
 		</div>
 	</li>

@@ -36,7 +36,8 @@ const DisplayMyBids = ({bids}) => {
 					price={price}
 					date={displayDate}
 					listing={listing}
-					user={user}/>
+					user={user}
+					bid={bid}/>
 			</ul>
 		);
 	})
