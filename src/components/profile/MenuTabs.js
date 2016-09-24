@@ -18,6 +18,11 @@ class MenuTabs extends Component {
 
             </Link>
           </li>
+          <li>
+            <Link to="/home/profile/bidsWon">
+              Bids Won
+            </Link>
+          </li>
         </ul>
       </div>
     );
