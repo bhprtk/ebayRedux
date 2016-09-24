@@ -17,7 +17,12 @@ body {
   font-family: 'Acme', sans-serif;
 }
 
-.scrollable {
+.scrollable-bid {
+    height: 80vh;
+    overflow-y: auto;
+}
+
+.scrollable-listings {
     height: 80vh; /* or any value */
     overflow-y: auto;
 }

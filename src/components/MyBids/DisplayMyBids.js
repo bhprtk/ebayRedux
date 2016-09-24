@@ -42,13 +42,16 @@ const DisplayMyBids = ({bids}) => {
 		);
 	})
 	return (
-		<div className="list-group scrollable">
+		<div className="list-group scrollable-bid" style={styles.scrollable}>
 			{displayBids}
 		</div>
 	)
 };
 
 const styles = {
+	scrollable: {
+		background: '#f9f9f9'
+	}
 	// priceDiv: {
 	// 	padding: 5,
 	// 	borderRadius: 10,

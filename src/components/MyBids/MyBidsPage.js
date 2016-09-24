@@ -16,7 +16,6 @@ class MyBidsPage extends Component {
 	}
 
 	render() {
-		console.log ('this.props.myBids:', this.props.myBids)
 		return (
 			<div>
 				<DisplayMyBids bids={this.props.myBids}/>

@@ -13,18 +13,18 @@ const DisplayMyListings = ({listings}) => {
 			highestBid = 'Highest Bid: $0.00';
 		}
 		const price = (
-			<div className="row">
+			<div className="row" style={styles.price}>
 				<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5">
-					<h4>{tempPrice}</h4>
+					<strong>{tempPrice}</strong>
 				</div>
 				<div style={styles.priceDiv} className="text-center col-md-5 col-sm-5 col-xs-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-					<h4>{highestBid}</h4>
+					<strong>{highestBid}</strong>
 				</div>
 			</div>
 		)
 		const {listedBy} = listing;
 		return (
-			<Card key={index} style={styles.card}>
+			<Card key={index} style={styles.card} className="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 				<CardHeader
 					title={listedBy.displayName}
 					subtitle={date}
@@ -39,18 +39,11 @@ const DisplayMyListings = ({listings}) => {
 				<CardText style={styles.cardText}>
 					{listing.description}
 				</CardText>
-				<CardActions>
-					<button className="btn btn-block btn-large" style={styles.bidButton}>
-						<h4>
-							BID
-						</h4>
-					</button>
-				</CardActions>
 			</Card>
 		);
 	});
 	return (
-		<div>
+		<div className="scrollable-listings" style={styles.container}>
 			{displayListings}
 		</div>
 	);
@@ -61,6 +54,12 @@ DisplayMyListings.propTypes = {
 };
 
 const styles = {
+	container: {
+		background: "#f9f9f9"
+	},
+	card: {
+		margin: 20
+	},
 	cardText: {
 		color: '#696969'
 	},
@@ -70,12 +69,15 @@ const styles = {
 		color: '#fff'
 	},
 	priceDiv: {
-		padding: 5,
-		borderRadius: 10,
-		borderWidth: 2,
-		borderColor: '#696969',
-		borderStyle: 'solid',
+		// padding: 5,
+		// borderRadius: 10,
+		// borderWidth: 2,
+		// borderColor: '#696969',
+		// borderStyle: 'solid',
 		background: "#fff"
+	},
+	price: {
+		marginTop: 10
 	}
 };
 

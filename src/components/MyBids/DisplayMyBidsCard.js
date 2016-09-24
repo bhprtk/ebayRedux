@@ -9,7 +9,7 @@ const DisplayMyBidsCard = ({price, date, listing, user, bid}) => {
 	const linkTo = `/home/singleListing/${listing._id}`
 
 	return (
-		<Card>
+		<Card style={styles.card}>
 			<Link className="list-group-item" to={linkTo}>
 				<div className="media">
 					<div className="media-left">
@@ -31,8 +31,13 @@ const DisplayMyBidsCard = ({price, date, listing, user, bid}) => {
 };
 
 const styles = {
+	card: {
+		margin: 20,
+		// background: 'green',
+		color: 'red'
+	},
 	cardText: {
-		color: '#696969'
+		color: '#CFD8DC'
 	},
 	image: {
 		height: 100,
