@@ -1,10 +1,17 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
-export function createShop(shop) {
+export function getAllShopsSuccess(shops) {
+	return {
+		type: types.GET_ALL_SHOPS_SUCCESS,
+		shops
+	}
+}
+
+export function getAllShops() {
 	return dispatch => {
-		return axios.post('/api/shop', shop)
-			.then(res => console.log ('res:', res))
+		return axios.get('/api/shops')
+			.then(res => dispatch(getAllShopsSuccess(res.data)))
 			.catch(err => console.log ('err:', err))
 	}
 }

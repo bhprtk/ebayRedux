@@ -6,6 +6,11 @@ import User from '../models/user';
 import Shop from '../models/shop';
 
 router.route('/')
+	.get((req, res) => {
+		Shop.find({})
+			.then(shops => res.send(shops))
+			.catch(err => res.status(400).send(err))
+	})
 	.post((req, res) => {
 		Shop.create(req.body)
 			.then(newShop => res.send(newShop))

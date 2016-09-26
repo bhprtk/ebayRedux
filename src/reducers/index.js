@@ -4,6 +4,7 @@ import newListings from './newListingsReducer';
 import myListings from './myListingsReducer';
 import listingById from './listingByIdReducer';
 import myBids from './myBidsReducer';
+import shops from './shopsReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
 	newListings,
 	myListings,
 	listingById,
-	myBids
+	myBids,
+	shops
 });
 
 export default rootReducer;
