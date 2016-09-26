@@ -66,18 +66,19 @@ class HomePage extends Component {
 		e.preventDefault();
 		const {imageUrl, title, price, description} = this.state;
 		const {user, listingActions} = this.props;
-		const listingId = uuid();
 
-		const listingObj = {
+		const shopObj = {
 			imageUrl,
 			title,
 			price,
 			description,
-			date: Date.now(),
-			listedBy: user._id
+			remaining: 5
+			// date: Date.now(),
+			// listedBy: user._id
 			// listingId: uuid()
 		};
 		listingActions.createListing(listingObj);
+		// shopActions.createShop(shopObj);
 		this.setState({ showModal: false });
 	}
 

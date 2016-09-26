@@ -26,6 +26,11 @@ const Navbar = ({addListingModal, logout, user}) => {
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
 					<li>
+						<Link to="/home/shop">
+							Shop
+						</Link>
+					</li>
+					<li>
 						<Link to="/home/listings">
 							Display Listings
 						</Link>
