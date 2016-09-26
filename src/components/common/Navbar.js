@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import Avatar from 'material-ui/Avatar';
 
 const Navbar = ({addListingModal, logout, user}) => {
+	console.log ('user:', user)
 	return (
 		<nav className="navbar navbar-default navbar-fixed-top" style={styles.navbar}>
 			<div className="container-fluid">
@@ -15,6 +16,13 @@ const Navbar = ({addListingModal, logout, user}) => {
 							<span style={styles.displayName}>{user.displayName}</span>
 						</Link>
 					</li>
+					<li>
+						<a style={styles.profile}>
+							<img src="http://www.mariowiki.com/images/d/d6/MKDS_Coin.gif" style={styles.photo}/>
+							<span style={styles.displayName}>{user.coins}</span>
+						</a>
+					</li>
+
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
 					<li>
@@ -63,6 +71,9 @@ const styles = {
 	},
 	profile: {
 
+	},
+	coins: {
+		marginTop: 5
 	}
 };
 

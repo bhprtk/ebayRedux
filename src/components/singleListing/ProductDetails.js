@@ -32,16 +32,7 @@ const ProductDetails = ({listing}) => {
 					</div>
 
 				</div>
-
 				<br/>
-				<CountDown date={listing.date}/>
-					<ReactCountdownClock seconds={dateTime}
-	                     color="#000"
-	                     alpha={0.9}
-	                     size={300}
-	                     onComplete={() => console.log ('lol:')}
-											 timeFormat="hms" />
-
 				<div className="row">
 					<p><strong>Description:</strong></p>
 					<p>{listing.description}</p>

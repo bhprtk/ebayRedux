@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
 	displayName: String,
 	photoURL: String,
 	listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Listing'}],
-	bids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bid'}]
+	bids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bid'}],
+	coins: Number
 });
 
 userSchema.statics.addListingToUser = function(userId, listingId, cb) {

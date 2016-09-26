@@ -27,7 +27,8 @@ export function saveUser(user) {
 			displayName,
 			email,
 			photoURL,
-			uid
+			uid,
+			coins: 3000
 		};
 		axios.get(`/api/users/${user.email}`)
 			.then(res => {
