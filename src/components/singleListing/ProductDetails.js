@@ -1,5 +1,8 @@
 import React, {PropTypes} from 'react';
 import moment from 'moment';
+import ReactCountdownClock from 'react-countdown-clock';
+// import CountDown from 'react-simple-countdown';
+import CountDown from '../common/CountDown';
 
 import BidButton from './BidButton';
 
@@ -12,6 +15,8 @@ const ProductDetails = ({listing}) => {
 	} else {
 		highestBid = 'Highest Bid: $0.00';
 	}
+	const dateTest = new Date(2016, 8, 30);
+	const dateTime = dateTest.getTime();
 	return (
 			<div className="col-md-6 col-sm-6">
 				<BidButton
@@ -29,6 +34,14 @@ const ProductDetails = ({listing}) => {
 				</div>
 
 				<br/>
+				<CountDown date={listing.date}/>
+					<ReactCountdownClock seconds={dateTime}
+	                     color="#000"
+	                     alpha={0.9}
+	                     size={300}
+	                     onComplete={() => console.log ('lol:')}
+											 timeFormat="hms" />
+
 				<div className="row">
 					<p><strong>Description:</strong></p>
 					<p>{listing.description}</p>
