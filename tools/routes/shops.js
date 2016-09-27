@@ -23,16 +23,23 @@ router.route('/buyShopById/:shopId/:userId')
 		Shop.findById(shopId)
 			.then(shop => {
 				shop.remaining--;
-				return shop.save()
-					.then(savedShop => savedShop)
+				return shop.save();
 			})
 			.then(savedShop => {
-				User.findById(userId)
-					.then(user => {
-						
-					})
+				return User.findById(userId)
+					.then(user => [user, savedShop])
+					.catch(err => err);
 			})
-		res.send();
+			.then(data => {
+				const [user, shop] = data;
+				user.shops.push(shop);
+				user.coins -= shop.price;
+				return user.save()
+					.then(savedUser => [savedUser, shop])
+					.catch(err => err);
+			})
+			.then(data => res.send(data))
+			.catch(err => res.status(400).send(err));
 	})
 
 module.exports = router;
