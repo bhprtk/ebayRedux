@@ -49,7 +49,6 @@ function mapStateToProps(state, ownProps) {
 	return {
 		shops: state.shops,
 		user: state.user,
-		shop: state.shop
 	};
 }
 

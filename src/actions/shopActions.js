@@ -28,11 +28,8 @@ export function getCurrentShopSuccess(shop) {
 export function buyShopById(shopId, userId) {
 	return dispatch => {
 		return axios.put(`/api/shops/buyShopById/${shopId}/${userId}`)
-			.then(res => {
-				dispatch(getCurrentUserSuccess(res.data[0]))
-				return(res.data[1]);
-			})
-			.then(shop => dispatch(getCurrentShopSuccess(shop)))
+			.then(res => dispatch(getCurrentUserSuccess(res.data[0])))
+			.then(() => dispatch(getAllShops()))
 			.catch(err => console.log ('err:', err));
 	};
 }
