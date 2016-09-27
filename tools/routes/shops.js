@@ -17,4 +17,12 @@ router.route('/')
 			.catch(err => res.status(400).send(err));
 	})
 
+router.route('/buyShopById/:shopId/:userId')
+	.put((req, res) => {
+		const {shopId, userId} = req.params;
+		console.log ('shopId:', shopId)
+		console.log ('userId:', userId)
+		res.send();
+	})
+
 module.exports = router;

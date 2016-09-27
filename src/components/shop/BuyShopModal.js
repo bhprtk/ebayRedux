@@ -12,8 +12,8 @@ class BuyShopModal extends Component {
 	}
 
 	buyShop() {
-		const {shopActions, shop} = this.props;
-		shopActions.buyShopById(shop._id);
+		const {shopActions, shop, user} = this.props;
+		shopActions.buyShopById(shop._id, user._id);
 		this.props.hide();
 	}
 
@@ -57,7 +57,7 @@ const styles = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		
+
 	};
 }
 

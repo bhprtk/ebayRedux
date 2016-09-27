@@ -16,8 +16,10 @@ export function getAllShopsSuccess(shops) {
 	}
 }
 
-export function buyShopById(shopId) {
+export function buyShopById(shopId, userId) {
 	return dispatch => {
-		return console.log ('shopId:', shopId);
+		return axios.put(`/api/shops/buyShopById/${shopId}/${userId}`)
+			.then(res => console.log ('res:', res))
+			.catch(err => console.log ('err:', err));
 	}
 }
