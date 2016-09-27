@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-component';
 import DisplayShopCard from './DisplayShopCard';
 import BuyShopModal from './BuyShopModal';
 
-const DisplayShop = ({shops, onClickBuy, showModal, hideModal}) => {
+const DisplayShop = ({shops, onClickBuy, showModal, hideModal, user}) => {
 	const displayShops = shops.map((shop, index) => {
 		return (
 			<div key={index}>
@@ -14,7 +14,8 @@ const DisplayShop = ({shops, onClickBuy, showModal, hideModal}) => {
 				<BuyShopModal
 					show={showModal}
 					hide={hideModal}
-					shop={shop} />
+					shop={shop}
+					user={user} />
 			</div>
 		);
 	})

@@ -38,7 +38,8 @@ class ShopPage extends Component {
 					shops={this.props.shops}
 					onClickBuy={this.onClickBuy}
 					showModal={this.state.showModal}
-					hideModal={this.hideModal} />
+					hideModal={this.hideModal}
+					user={this.props.user} />
 			</div>
 		);
 	}
@@ -46,7 +47,8 @@ class ShopPage extends Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		shops: state.shops
+		shops: state.shops,
+		user: state.user
 	};
 }
 

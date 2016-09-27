@@ -12,9 +12,14 @@ const DisplayShopCard = ({shop, onClickBuy}) => {
     </Chip>
 	);
 
+	const remaining = (
+		<h3 style={styles.remaining}>Remaining: {shop.remaining}</h3>
+	)
+
 	return (
 		<Card className="col-md-6 col-xs-6 col-sm-6">
-			<CardHeader />
+			<CardHeader
+				title={remaining}/>
 			<CardMedia>
 				<img src={shop.imageUrl} />
 			</CardMedia>
@@ -49,6 +54,9 @@ const styles = {
 	},
 	chip: {
 		background: '#fff'
+	},
+	remaining: {
+		color: '#696969'
 	}
 };
 
