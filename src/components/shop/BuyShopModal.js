@@ -12,7 +12,8 @@ class BuyShopModal extends Component {
 	}
 
 	buyShop() {
-		console.log('lets buy this shitttt');
+		const {shopActions, shop} = this.props;
+		shopActions.buyShopById(shop._id);
 		this.props.hide();
 	}
 
@@ -54,10 +55,16 @@ const styles = {
 	}
 };
 
+function mapStateToProps(state, ownProps) {
+	return {
+		
+	};
+}
+
 function mapDispatchToProps(dispatch) {
 	return {
 		shopActions: bindActionCreators(shopActions, dispatch)
 	};
 }
 
-export default connect({}, mapDispatchToProps)(BuyShopModal);
+export default connect(mapStateToProps, mapDispatchToProps)(BuyShopModal);
