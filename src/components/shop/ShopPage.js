@@ -48,7 +48,8 @@ class ShopPage extends Component {
 function mapStateToProps(state, ownProps) {
 	return {
 		shops: state.shops,
-		user: state.user
+		user: state.user,
+		shop: state.shop
 	};
 }
 
