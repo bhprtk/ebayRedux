@@ -20,8 +20,18 @@ router.route('/')
 router.route('/buyShopById/:shopId/:userId')
 	.put((req, res) => {
 		const {shopId, userId} = req.params;
-		console.log ('shopId:', shopId)
-		console.log ('userId:', userId)
+		Shop.findById(shopId)
+			.then(shop => {
+				shop.remaining--;
+				return shop.save()
+					.then(savedShop => savedShop)
+			})
+			.then(savedShop => {
+				User.findById(userId)
+					.then(user => {
+						
+					})
+			})
 		res.send();
 	})
 
