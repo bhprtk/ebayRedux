@@ -52,7 +52,7 @@ const DisplayListings = ({listings, showModal}) => {
 		);
 	});
 	const masonryOptions = {
-    transitionDuration: 0
+    transitionDuration: 5
 	};
 	return (
 		<div

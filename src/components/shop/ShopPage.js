@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import * as shopActions from '../../actions/shopActions';
+import DisplayShop from './DisplayShop';
 
 class ShopPage extends Component {
 	constructor(props) {
@@ -17,7 +18,9 @@ class ShopPage extends Component {
 	render() {
 		console.log ('this.props.shops:', this.props.shops)
 		return (
-			<h1>shop page</h1>
+			<div>
+				<DisplayShop shops={this.props.shops}/>
+			</div>
 		);
 	}
 }
