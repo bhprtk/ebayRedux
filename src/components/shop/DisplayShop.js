@@ -2,13 +2,20 @@ import React from 'react';
 import Masonry from 'react-masonry-component';
 
 import DisplayShopCard from './DisplayShopCard';
+import BuyShopModal from './BuyShopModal';
 
-const DisplayShop = ({shops}) => {
-	console.log ('shops:', shops);
-
+const DisplayShop = ({shops, onClickBuy, showModal, hideModal}) => {
 	const displayShops = shops.map((shop, index) => {
 		return (
-			<DisplayShopCard shop={shop} key={index}/>
+			<div key={index}>
+				<DisplayShopCard
+					shop={shop}
+					onClickBuy={onClickBuy} />
+				<BuyShopModal
+					show={showModal}
+					hide={hideModal}
+					shop={shop} />
+			</div>
 		);
 	})
 	const masonryOptions = {

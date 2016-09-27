@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
-const DisplayShopCard = ({shop}) => {
+const DisplayShopCard = ({shop, onClickBuy}) => {
 	const image = "http://altcoindb.com/images/mariobroscoin.png";
 	const price = (
 		<Chip style={styles.chip}>
@@ -24,6 +24,13 @@ const DisplayShopCard = ({shop}) => {
 			<CardText style={styles.cardText}>
 				{shop.description}
 			</CardText>
+			<CardActions>
+				<button
+					className="btn btn-success btn-block btn-lg"
+					onClick={onClickBuy}>
+					BUY
+				</button>
+			</CardActions>
 		</Card>
 	);
 };

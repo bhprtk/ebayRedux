@@ -4,10 +4,18 @@ import {bindActionCreators} from 'redux';
 
 import * as shopActions from '../../actions/shopActions';
 import DisplayShop from './DisplayShop';
+import BuyShopModal from './BuyShopModal';
 
 class ShopPage extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			showModal: false
+		}
+
+		this.onClickBuy = this.onClickBuy.bind(this);
+		this.hideModal = this.hideModal.bind(this);
 	}
 
 	componentWillMount() {
@@ -15,11 +23,22 @@ class ShopPage extends Component {
 		shopActions.getAllShops();
 	}
 
+	onClickBuy() {
+		this.setState({ showModal: true })
+	}
+
+	hideModal() {
+		this.setState({ showModal: false })
+	}
+
 	render() {
-		console.log ('this.props.shops:', this.props.shops)
 		return (
 			<div>
-				<DisplayShop shops={this.props.shops}/>
+				<DisplayShop
+					shops={this.props.shops}
+					onClickBuy={this.onClickBuy}
+					showModal={this.state.showModal}
+					hideModal={this.hideModal} />
 			</div>
 		);
 	}
