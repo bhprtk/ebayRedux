@@ -10,7 +10,7 @@ class DisplayShopCard extends Component {
 		super(props);
 
 		this.state = {
-			showModal: false
+			hideNotEnoughCoinsModal: false
 		}
 
 		this.onClickBuy = this.onClickBuy.bind(this);
@@ -20,14 +20,14 @@ class DisplayShopCard extends Component {
 	onClickBuy() {
 		const {shop, user} = this.props;
 		if(user.coins > shop.price) { // replace the sign
-			this.setState({ showModal: true });
+			this.setState({ hideNotEnoughCoinsModal: true });
 		} else if(shop.remaining <= 0) {
-			
+
 		}
 	}
 
-	hideModal() {
-		this.setState({ showModal: false });
+	hideNotEnoughCoinsModal() {
+		this.setState({ hideNotEnoughCoinsModal: false });
 	}
 
 	render() {
@@ -69,7 +69,7 @@ class DisplayShopCard extends Component {
 
 				<NotEnoughCoinsModal
 					show={this.state.showModal}
-					hide={this.hideModal}/>
+					hide={this.hideNotEnoughCoinsModal}/>
 			</div>
 		);
 
