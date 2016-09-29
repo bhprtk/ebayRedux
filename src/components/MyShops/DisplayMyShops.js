@@ -13,7 +13,7 @@ const DisplayMyShops = ({shops}) => {
 	})
 
 	return (
-		<div>
+		<div className="scrollable-listings">
 			{displayShops}
 		</div>
 	);
