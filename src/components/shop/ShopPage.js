@@ -40,7 +40,8 @@ class ShopPage extends Component {
 				<div key={index} className="container">
 					<DisplayShopCard
 						shop={shop}
-						onClickBuy={this.onClickBuy} />
+						onClickBuy={this.onClickBuy}
+						user={user} />
 					<BuyShopModal
 						show={this.state.showModal}
 						hide={this.hideModal}
