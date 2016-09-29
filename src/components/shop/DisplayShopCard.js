@@ -4,30 +4,39 @@ import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
 import NotEnoughCoinsModal from './NotEnoughCoinsModal';
+import NotEnoughRemainingModal from './NotEnoughRemainingModal';
 
 class DisplayShopCard extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			hideNotEnoughCoinsModal: false
+			showNotEnoughCoinsModal: false,
+			showNotEnoughRemainingModal: false
 		}
 
 		this.onClickBuy = this.onClickBuy.bind(this);
-		this.hideModal = this.hideModal.bind(this);
+		this.hideNotEnoughCoinsModal = this.hideNotEnoughCoinsModal.bind(this);
+		this.hideNotEnoughRemainingModal = this.hideNotEnoughRemainingModal.bind(this);
 	}
 
 	onClickBuy() {
 		const {shop, user} = this.props;
-		if(user.coins > shop.price) { // replace the sign
-			this.setState({ hideNotEnoughCoinsModal: true });
-		} else if(shop.remaining <= 0) {
-
+		if(user.coins < shop.price) { // replace the sign
+			this.setState({ showeNotEnoughCoinsModal: true });
+		} else if(shop.remaining <= 0) { // replace the sign
+			this.setState({ showNotEnoughRemainingModal: true })
+		} else {
+			console.log ('this.props:', this.props)
 		}
 	}
 
 	hideNotEnoughCoinsModal() {
-		this.setState({ hideNotEnoughCoinsModal: false });
+		this.setState({ showNotEnoughCoinsModal: false });
+	}
+
+	hideNotEnoughRemainingModal() {
+		this.setState({ showNotEnoughRemainingModal: false });
 	}
 
 	render() {
@@ -68,8 +77,13 @@ class DisplayShopCard extends Component {
 				</Card>
 
 				<NotEnoughCoinsModal
-					show={this.state.showModal}
+					show={this.state.showNotEnoughCoinsModal}
 					hide={this.hideNotEnoughCoinsModal}/>
+
+				<NotEnoughRemainingModal
+					show={this.state.showNotEnoughRemainingModal}
+					hide={this.hideNotEnoughRemainingModal}
+					shopTitle={shop.title}/>
 			</div>
 		);
 
