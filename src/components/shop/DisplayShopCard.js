@@ -21,13 +21,13 @@ class DisplayShopCard extends Component {
 	}
 
 	onClickBuy() {
-		const {shop, user} = this.props;
+		const {shop, user, onClickBuy} = this.props;
 		if(user.coins < shop.price) { // replace the sign
 			this.setState({ showeNotEnoughCoinsModal: true });
 		} else if(shop.remaining <= 0) { // replace the sign
 			this.setState({ showNotEnoughRemainingModal: true })
 		} else {
-			console.log ('this.props:', this.props)
+			onClickBuy();
 		}
 	}
 
