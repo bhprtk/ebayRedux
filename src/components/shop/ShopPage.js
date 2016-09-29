@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as shopActions from '../../actions/shopActions';
 import DisplayShop from './DisplayShop';
 import BuyShopModal from './BuyShopModal';
+import DisplayShopCard from './DisplayShopCard';
 
 class ShopPage extends Component {
 	constructor(props) {
@@ -24,6 +25,7 @@ class ShopPage extends Component {
 	}
 
 	onClickBuy() {
+
 		this.setState({ showModal: true })
 	}
 
@@ -32,14 +34,24 @@ class ShopPage extends Component {
 	}
 
 	render() {
+		const {shops, user} = this.props;
+		const displayShops = shops.map((shop, index) => {
+			return (
+				<div key={index} className="container">
+					<DisplayShopCard
+						shop={shop}
+						onClickBuy={this.onClickBuy} />
+					<BuyShopModal
+						show={this.state.showModal}
+						hide={this.hideModal}
+						shop={shop}
+						user={user} />
+				</div>
+			);
+		});
 		return (
 			<div>
-				<DisplayShop
-					shops={this.props.shops}
-					onClickBuy={this.onClickBuy}
-					showModal={this.state.showModal}
-					hideModal={this.hideModal}
-					user={this.props.user} />
+				{displayShops}
 			</div>
 		);
 	}
