@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import mongooseDeepPopulate from 'mongoose-deep-populate';
+const deepPopulate = mongooseDeepPopulate(mongoose);
 
 const shopSchema = new mongoose.Schema({
 	title: String,
@@ -7,6 +9,8 @@ const shopSchema = new mongoose.Schema({
 	price: Number,
 	remaining: Number
 });
+
+shopSchema.plugin(deepPopulate);
 
 const Shop = mongoose.model('Shop', shopSchema);
 

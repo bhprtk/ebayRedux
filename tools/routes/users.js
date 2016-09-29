@@ -7,7 +7,7 @@ import Listing from '../models/listing';
 router.route('/')
 	.get((req, res) => {
 		User.find({})
-			.populate('listings bids')
+			.populate('listings bids shops')
 			// .populate({
 			// 	path: 'listings',
 			// 	populate: {
