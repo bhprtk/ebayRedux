@@ -8,13 +8,6 @@ router.route('/')
 	.get((req, res) => {
 		User.find({})
 			.populate('listings bids shops')
-			// .populate({
-			// 	path: 'listings',
-			// 	populate: {
-			// 		path: 'highestBid bids',
-			// 		model: 'User'
-			// 	}
-			// })
 			.then(users => res.send(users))
 			.catch(err => console.log ('err:', err))
 	})
@@ -29,6 +22,7 @@ router.route('/:email')
 	.get((req, res) => {
 		const {email} = req.params;
 		User.findOne({email})
+			.populate('shops')
 			.then(user => res.send(user))
 			.catch(err => res.status(400).send(err));
 	});
@@ -41,6 +35,6 @@ router.route('/getListingsByUser/:userId')
 			.then(listings => listings.filter(listing => listing.listedBy._id.equals(userId)))
 			.then(listings => res.send(listings))
 			.catch(err => res.status(400).send(err));
-	})
+	});
 
 module.exports = router;

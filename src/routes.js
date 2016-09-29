@@ -11,6 +11,7 @@ import MyBidsPage from './components/MyBids/MyBidsPage';
 import SingleListingPage from './components/singleListing/SingleListingPage';
 import BidsWon from './components/profile/BidsWon';
 import ShopPage from './components/shop/ShopPage';
+import MyShops from './components/profile/MyShops';
 
 export default (
 	<Route path="/" component={App}>
@@ -23,6 +24,7 @@ export default (
 				<Route path="myListings" component={MyListingsPage}/>
 				<Route path="myBids" component={MyBidsPage}/>
 				<Route path="bidsWon" component={BidsWon}/>
+				<Route path="myShops" component={MyShops}/>
 			</Route>
 		</Route>
 	</Route>

@@ -38,6 +38,12 @@ router.route('/buyShopById/:shopId/:userId')
 					.then(savedUser => [savedUser, shop])
 					.catch(err => err);
 			})
+			.then(data => {
+				User.findById(data[0]._id)
+					.populate('listings bids shops')
+					.then(user => [user, data[1]])
+					.catch(err => err)
+			})
 			.then(data => res.send(data))
 			.catch(err => res.status(400).send(err));
 	})
