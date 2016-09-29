@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import DisplayMyShops from './DisplayMyShops';
+
 class MyShopsPage extends Component {
 	constructor(props) {
 		super(props);
@@ -9,7 +11,10 @@ class MyShopsPage extends Component {
 	render() {
 		const { shops } = this.props.user;
 		return (
-			<h1>MyShopsPage</h1>
+			<div>
+				<DisplayMyShops
+					shops={shops}/>
+			</div>
 		);
 	}
 }
