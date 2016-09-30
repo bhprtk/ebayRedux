@@ -32,6 +32,7 @@ router.route('/buyShopById/:shopId/:userId')
 			})
 			.then(data => {
 				const [user, shop] = data;
+				shop.shopAddedDate = Date.now();
 				user.shops.push(shop);
 				user.coins -= shop.price;
 				return user.save()
