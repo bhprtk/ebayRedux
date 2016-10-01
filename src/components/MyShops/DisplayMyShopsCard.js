@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
-const DisplayMyShopsCard = ({shop}) => {
+const DisplayMyShopsCard = ({shop, list}) => {
 	const price = (
 		<Chip style={styles.chip}>
 			<Avatar src="http://altcoindb.com/images/mariobroscoin.png" />
@@ -22,6 +22,11 @@ const DisplayMyShopsCard = ({shop}) => {
 			<CardText style={styles.cardText}>
 				{shop.description}
 			</CardText>
+			<CardActions>
+				<button className="btn btn-info" data-what="this" onClick={list}>
+					List
+				</button>
+			</CardActions>
 		</Card>
 	);
 };
