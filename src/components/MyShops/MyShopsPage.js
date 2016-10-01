@@ -12,7 +12,7 @@ class MyShopsPage extends Component {
 	}
 
 	list(e) {
-		console.log ('e.target.dataset.what:', e.target.dataset.what)
+		console.log ('e.target.dataset.shopid:', e.target.dataset.shopid)
 	}
 
 	render() {
