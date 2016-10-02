@@ -55,7 +55,7 @@ class DisplayShopCard extends Component {
 
 		return (
 			<div>
-				<Card className="col-md-6 col-xs-6 col-sm-6">
+				<Card>
 					<CardHeader
 						title={remaining}/>
 					<CardMedia>

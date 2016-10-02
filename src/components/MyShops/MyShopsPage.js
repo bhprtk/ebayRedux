@@ -33,14 +33,12 @@ class MyShopsPage extends Component {
 		if(shops){
 			displayShops = shops.map((shop, index) => {
 				return (
-					<div>
-						<DisplayMyShopsCard
-							shop={shop}
-							key={index}
-							list={this.list}
-							show={this.state.showModal}
-							hide={this.hideModal} />
-					</div>
+					<DisplayMyShopsCard
+						shop={shop}
+						key={index}
+						list={this.list}
+						show={this.state.showModal}
+						hide={this.hideModal} />
 				);
 			});
 		} else {

@@ -5,7 +5,7 @@ import Chip from 'material-ui/Chip';
 
 import AddListingModal from './AddListingModal';
 
-const DisplayMyShopsCard = ({shop, list, key, show, hide}) => {
+const DisplayMyShopsCard = ({shop, list, show, hide}) => {
 	const price = (
 		<Chip style={styles.chip}>
 			<Avatar src="http://altcoindb.com/images/mariobroscoin.png" />

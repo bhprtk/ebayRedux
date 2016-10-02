@@ -7,7 +7,7 @@ import BuyShopModal from './BuyShopModal';
 const DisplayShop = ({shops, onClickBuy, showModal, hideModal, user}) => {
 	const displayShops = shops.map((shop, index) => {
 		return (
-			<div key={index}>
+			<div key={index} className="col-md-6 col-xs-6 col-sm-6">
 				<DisplayShopCard
 					shop={shop}
 					onClickBuy={onClickBuy} />

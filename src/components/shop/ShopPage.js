@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Masonry from 'react-masonry-component';
 
 import * as shopActions from '../../actions/shopActions';
-import DisplayShop from './DisplayShop';
+// import DisplayShop from './DisplayShop';
 import BuyShopModal from './BuyShopModal';
 import DisplayShopCard from './DisplayShopCard';
 
@@ -37,7 +38,7 @@ class ShopPage extends Component {
 		const {shops, user} = this.props;
 		const displayShops = shops.map((shop, index) => {
 			return (
-				<div key={index} className="container">
+				<div key={index} className="col-md-6 col-xs-6 col-sm-6">
 					<DisplayShopCard
 						shop={shop}
 						onClickBuy={this.onClickBuy}
@@ -50,9 +51,14 @@ class ShopPage extends Component {
 				</div>
 			);
 		});
+		const masonryOptions = {
+			transitionDuration: 5
+		};
 		return (
-			<div>
-				{displayShops}
+			<div className="container">
+				<Masonry options={masonryOptions}>
+					{displayShops}
+				</Masonry>
 			</div>
 		);
 	}
