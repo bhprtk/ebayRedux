@@ -19,7 +19,7 @@ class MyShopsPage extends Component {
 
 	list(e) {
 		console.log ('e.target.dataset.shopid:', e.target.dataset.shopid)
-		this.setState({showModal: true});
+		// this.setState({showModal: true});
 
 	}
 
@@ -29,20 +29,25 @@ class MyShopsPage extends Component {
 
 	render() {
 		const { shops } = this.props.user;
-		const displayShops = shops.map((shop, index) => {
-			return (
-				<div>
-					<DisplayMyShopsCard
-						shop={shop}
-						key={index}
-						list={this.list} />
-					<AddListingModal
-						shop={shop}
-						show={this.state.showModal}
-						hide={this.hideModal}/>
-				</div>
-			);
-		});
+		let displayShops;
+		if(shops){
+			displayShops = shops.map((shop, index) => {
+				return (
+					<div>
+						<DisplayMyShopsCard
+							shop={shop}
+							key={index}
+							list={this.list}
+							show={this.state.showModal}
+							hide={this.hideModal} />
+					</div>
+				);
+			});
+		} else {
+			displayShops = (
+				<h1>Loading Shop ... </h1>
+			)
+		}
 		return (
 			<div className="scrollable-listings">
 				{displayShops}

@@ -3,8 +3,9 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
-const DisplayMyShopsCard = ({shop, list, key}) => {
-	console.log ('shop:', shop)
+import AddListingModal from './AddListingModal';
+
+const DisplayMyShopsCard = ({shop, list, key, show, hide}) => {
 	const price = (
 		<Chip style={styles.chip}>
 			<Avatar src="http://altcoindb.com/images/mariobroscoin.png" />
@@ -12,26 +13,28 @@ const DisplayMyShopsCard = ({shop, list, key}) => {
 		</Chip>
 	);
 	return (
-		<Card style={styles.card} className="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-			<CardHeader />
-			<CardMedia>
-				<img src={shop.imageUrl} />
-			</CardMedia>
-			<CardTitle
-				title={shop.title}
-				subtitle={price} />
-			<CardText style={styles.cardText}>
-				{shop.description}
-			</CardText>
-			<CardActions>
-				<button
-					className="btn btn-info"
-					data-shopid={shop._id}
-					onClick={list}>
-					List
-				</button>
-			</CardActions>
-		</Card>
+		<div>
+			<Card style={styles.card} className="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				<CardHeader />
+				<CardMedia>
+					<img src={shop.imageUrl} />
+				</CardMedia>
+				<CardTitle
+					title={shop.title}
+					subtitle={price} />
+				<CardText style={styles.cardText}>
+					{shop.description}
+				</CardText>
+				<CardActions>
+					<button
+						className="btn btn-info"
+						data-shopid={shop._id}
+						onClick={list}>
+						List
+					</button>
+				</CardActions>
+			</Card>
+		</div>
 	);
 };
 
