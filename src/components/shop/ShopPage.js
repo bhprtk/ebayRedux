@@ -26,8 +26,6 @@ class ShopPage extends Component {
 	}
 
 	onClickBuy() {
-
-
 		this.setState({ showModal: true })
 	}
 
