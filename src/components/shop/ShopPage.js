@@ -70,8 +70,6 @@ function mapStateToProps(state, ownProps) {
 	};
 }
 
-
-
 function mapDispatchToProps(dispatch) {
 	return {
 		shopActions: bindActionCreators(shopActions, dispatch)
